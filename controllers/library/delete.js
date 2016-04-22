@@ -1,9 +1,10 @@
+const disk = require('diskusage');
 const fs = require("fs-extra");
 
 /*
     DELETE library/:lib
     RETURN
-        0 = OK, 1 = ERROR
+        { error: boolean, freeSpace?: number }
     DESCRIPTION
         Delete library and library's upload folder
 */
@@ -11,11 +12,13 @@ module.exports = function(req, res) {
     
     fs.remove(req.path.lib, err => {
         if (err) {
-            res.send(1);
+            res.json({ error: true });
         }
         else {
             fs.remove(req.path.ul, err => {
-               res.send(+err);
+               disk.check('/', (err, info) => {
+                   res.json({ error: false, freeSpace: info.free });
+               });
             });
         }
     });
