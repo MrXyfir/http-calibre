@@ -9,17 +9,14 @@ const fs = require("fs-extra");
 */
 module.exports = function(req, res) {
     
-    const library = process.env.libdir + '/' + req.params.lib;
-    const upload = process.env.uldir + '/' + req.params.lib;
-    
-    fs.mkdir(library, err => {
+    fs.mkdir(req.path.lib, err => {
         if (err) {
             res.send(1);
         }
         else {
-            fs.mkdir(upload, err => {
+            fs.mkdir(req.path.ul, err => {
                if (err) {
-                   fs.remove(library, err => {
+                   fs.remove(req.path.lib, err => {
                        res.send(1);
                    });
                } 
