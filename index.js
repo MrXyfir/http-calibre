@@ -11,7 +11,7 @@ app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
 
 app.use("/library/:lib", function(req, res, next) {
-    if (!req.params.lib.match(/^A-Za-z0-9{40}$/)) {
+    if (!req.params.lib.match(/^[A-Za-z0-9]{40}$/)) {
         res.send(1);
     }
     else {
