@@ -24,6 +24,6 @@ router.route("/books/:book/metadata")
 router.route("/books/:book/format/:format")
     .post(require("./format/add"))
     .delete(require("./format/remove"));
-router.post("/books/:book/format/:format/convert", require("./format/convert-to"));
+router.post("/books/:book/format/convert/:from/:to", require("./format/convert-to"));
 
 module.exports = router;
