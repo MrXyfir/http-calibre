@@ -19,8 +19,7 @@ router.post("/books/upload", require("./upload/books"));
     
 router.route("/books/:book/metadata")
     .get(require("./metadata/get"))
-    .put(require("./metadata/set"))
-    .patch(require("./metadata/update"));
+    .put(require("./metadata/set"));
     
 router.route("/books/:book/format/:format")
     .post(require("./format/add"))
