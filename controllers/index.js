@@ -25,7 +25,7 @@ router.post("/upload", uploadLibrary.single("lib"), require("./library/upload"))
 
 router.route("/books")
     .get(require("./books/list"))
-    .post(uploadBooks.array("books", 20), require("./books/add"))
+    .post(uploadBooks.array("book", 20), require("./books/add"))
     .delete(require("./books/remove"));
 router.get("/books/search", require("./books/search"));
     
