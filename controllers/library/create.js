@@ -5,25 +5,25 @@ const fs = require("fs-extra");
 /*
     POST library/:lib
     RETURN
-        0 = OK, 1 = ERROR
+       { error: boolean }
     DESCRIPTION
         Create library and library's upload folder
 */
 module.exports = function(req, res) {
     
-    fs.mkdir(req.path.lib, err => {
+    fs.mkdir(req._path.lib, err => {
         if (err) {
-            res.send(1);
+            res.json({ error: true });
         }
         else {
-            fs.mkdir(req.path.ul, err => {
+            fs.mkdir(req._path.ul, err => {
                if (err) {
-                   fs.remove(req.path.lib, err => {
-                       res.send(1);
+                   fs.remove(req._path.lib, err => {
+                       res.json({ error: true });
                    });
                } 
                else {
-                   res.send(0);
+                   res.json({ error: false });
                }
             });
         }
