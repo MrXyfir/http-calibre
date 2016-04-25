@@ -21,7 +21,7 @@ module.exports = function(req, res) {
     }).join(' ');
     
     exec(
-        `calibredb add --library-path ${req.path.lib} --dont-notify-gui ${files}`,
+        `calibredb add --library-path ${req._path.lib} --dont-notify-gui ${files}`,
         { cwd: process.env.calibredir }, (err, data, stderr) => {
             if (err || data.indexOf("Added book ids:") == -1) {
                 res.json({ error: true });
@@ -31,7 +31,7 @@ module.exports = function(req, res) {
                     .replace(new RegExp("[^0-9,]", 'g'), '');
                 
                 // Notify API of system's free space
-                fs.emptyDir(req.path.ul, err => disk.check(process.env.rootdir, (err, info) => {
+                fs.emptyDir(req._path.ul, err => disk.check(process.env.rootdir, (err, info) => {
                     request.post({
                         url: process.env.apiurl + "book", form: {
                             freeSpace: info.free, ids

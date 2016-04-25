@@ -18,7 +18,7 @@ const fs = require("fs-extra");
 module.exports = function(req, res) {
     
     exec(
-        `scp -r ${req.path.lib} ${req.body.toServer}`,
+        `scp -r ${req._path.lib} ${req.body.toServer}`,
         { cwd: process.env.calibredir }, (err, data, stderr) => {
             if (err) {
                 res.json({ error: true });
@@ -28,7 +28,7 @@ module.exports = function(req, res) {
                     .replace(new RegExp("[^0-9,]", 'g'), '');
                 
                 // Notify API of system's free space
-                fs.emptyDir(req.path.lib, err => disk.check(process.env.rootdir, (err, info) => {
+                fs.emptyDir(req._path.lib, err => disk.check(process.env.rootdir, (err, info) => {
                     res.json({ error: false, freeSpace: info.free });
                 }));
             }

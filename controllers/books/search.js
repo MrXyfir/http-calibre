@@ -15,7 +15,7 @@ const exec = require("child_process").exec;
 module.exports = function(req, res) {
     
     exec(
-        `calibredb search "${escape(query)}" --library-path ${req.path.lib}`,
+        `calibredb search "${escape(query)}" --library-path ${req._path.lib}`,
         { cwd: process.env.calibredir }, (err, data, stderr) => {
             res.json(err ? [] : data.split(','));
         }

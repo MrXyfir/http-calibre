@@ -19,7 +19,7 @@ module.exports = function(req, res) {
     }
     
     exec(
-        `calibredb remove_format --library-path ${req.path.lib} --dont-notify-gui ${+req.params.book} ${req.params.format}`,
+        `calibredb remove_format --library-path ${req._path.lib} --dont-notify-gui ${+req.params.book} ${req.params.format}`,
         { cwd: process.env.calibredir }, (err, data, stderr) => {
             if (err) {
                 res.json({ error: true });

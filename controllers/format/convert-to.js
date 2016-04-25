@@ -22,7 +22,7 @@ module.exports = function(req, res) {
         return;
     }
     
-    const db = new sqlite.Database(req.path.lib + "/metadata.db");
+    const db = new sqlite.Database(req._path.lib + "/metadata.db");
     let path = "", sql = "", vars = [];
     
     // Get book path from books table WHERE id
@@ -35,7 +35,7 @@ module.exports = function(req, res) {
             res.json({ error: true });
         }
         else {
-            path = req.path.lib + '/' + row.path + '/';
+            path = req._path.lib + '/' + row.path + '/';
             
             // Get book file name from data table WHERE id AND format
             sql = "SELECT name FROM 'data' WHERE book = ? AND format = ?";
@@ -50,7 +50,7 @@ module.exports = function(req, res) {
                 else {
                     path += row.name + '.' + req.params.from;
                     
-                    const nPath = `${req.path.ul}/${row.name}.${req.params.to}`; 
+                    const nPath = `${req._path.ul}/${row.name}.${req.params.to}`; 
                     
                     // Attempt to convert to new format
                     exec(
@@ -62,14 +62,14 @@ module.exports = function(req, res) {
                             else {
                                 // Add format to :book
                                 exec(
-                                    `calibredb add_format --library-path ${req.path.lib} --dont-notify-gui ${+req.params.book} "${escape(nPath)}"`,
+                                    `calibredb add_format --library-path ${req._path.lib} --dont-notify-gui ${+req.params.book} "${escape(nPath)}"`,
                                     { cwd: process.env.calibredir }, (err, data, stderr) => {
                                         if (err || data.indexOf("Error") != -1) {
                                             res.json({ error: true });
                                         }
                                         else {
                                             // Empty upload directory and get free disk space
-                                            fs.emptyDir(req.path.ul, err => disk.check(process.env.rootdir, (err, info) => {
+                                            fs.emptyDir(req._path.ul, err => disk.check(process.env.rootdir, (err, info) => {
                                                 res.json({ error: false, freeSpace: info.free });
                                             }));
                                         }

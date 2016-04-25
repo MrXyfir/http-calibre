@@ -20,7 +20,7 @@ module.exports = function(req, res) {
     }
     
     exec(
-        `calibredb remove ${req.body.books} --library-path ${req.path.lib} --dont-notify-gui`,
+        `calibredb remove ${req.body.books} --library-path ${req._path.lib} --dont-notify-gui`,
         { cwd: process.env.calibredir }, (err, data, stderr) => {
             if (err) {
                 res.json({ error: true });

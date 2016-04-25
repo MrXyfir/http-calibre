@@ -19,16 +19,16 @@ const fs = require("fs-extra");
 */
 module.exports = function(req, res) {
     
-    fs.emptyDir(req.path.lib, err => {
+    fs.emptyDir(req._path.lib, err => {
         if (err) {
             res.json({ error: true });
         }
         else {
             fs.createReadStream(req.file.path).pipe(
-                unzip.Extract({ path: req.path.lib })
+                unzip.Extract({ path: req._path.lib })
             );
             
-            const db = new sqlite.Database(req.path.lib + "/metadata.db");
+            const db = new sqlite.Database(req._path.lib + "/metadata.db");
             
             db.all("SELECT id FROM 'books'", (err, rows) => {
                 if (err || !rows.length) {
@@ -40,7 +40,7 @@ module.exports = function(req, res) {
                         return row.id;
                     }).join(',');
                     
-                    fs.emptyDir(req.path.ul, err => disk.check(process.env.rootdir, (err, info) => {
+                    fs.emptyDir(req._path.ul, err => disk.check(process.env.rootdir, (err, info) => {
                         request.post({
                             url: process.env.apiurl + "book", form: {
                                 ids, freeSpace: info.free

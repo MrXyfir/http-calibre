@@ -12,12 +12,12 @@ const fs = require("fs-extra");
 */
 module.exports = function(req, res) {
     
-    fs.remove(req.path.lib, err => {
+    fs.remove(req._path.lib, err => {
         if (err) {
             res.json({ error: true });
         }
         else {
-            fs.remove(req.path.ul, err => {
+            fs.remove(req._path.ul, err => {
                disk.check(process.env.rootdir, (err, info) => {
                    res.json({ error: false, freeSpace: info.free });
                });

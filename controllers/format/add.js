@@ -22,7 +22,7 @@ module.exports = function(req, res) {
     
     // Add new format from upload folder to :book
     exec(
-        `calibredb add_format --library-path ${req.path.lib} --dont-notify-gui ${+req.params.book} "${escape(req.file.path)}"`,
+        `calibredb add_format --library-path ${req._path.lib} --dont-notify-gui ${+req.params.book} "${escape(req.file.path)}"`,
         { cwd: process.env.calibredir }, (err, data, stderr) => {
             if (err || data.indexOf("Error") != -1) {
                 res.json({ error: true });
@@ -31,7 +31,7 @@ module.exports = function(req, res) {
                 res.json({ error: false, fileName: req.file.filename });
                 
                 // Notify API of system's free space
-                fs.emptyDir(req.path.ul, err => disk.check(process.env.rootdir, (err, info) => {
+                fs.emptyDir(req._path.ul, err => disk.check(process.env.rootdir, (err, info) => {
                     request.put({
                         url: process.env.updateFreeSpaceUrl, form: {
                             free: info.free
