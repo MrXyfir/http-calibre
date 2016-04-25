@@ -1,12 +1,12 @@
+const express = require("express");
 const parser = require("body-parser");
-const app = require("express")();
+const app = express();
 
-let config = require("./config");
-app.listen(config.environment.port, () => {
-    console.log("SERVER RUNNING ON", config.environment.port);
+app.listen(process.env.port, () => {
+    console.log("SERVER RUNNING ON", process.env.port);
 });
 
-/* Body Parser */
+app.use("/", express.static(__dirname + "/public"));
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
 
