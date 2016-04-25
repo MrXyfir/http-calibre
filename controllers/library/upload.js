@@ -1,3 +1,5 @@
+"use strict";
+
 const request = require("request");
 const sqlite = require("sqlite3");
 const escape = require("js-string-escape");

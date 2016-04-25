@@ -1,3 +1,5 @@
+"use strict";
+
 const disk = require('diskusage');
 const fs = require("fs-extra");
 

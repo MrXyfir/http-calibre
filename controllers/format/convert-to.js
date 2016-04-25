@@ -1,3 +1,5 @@
+"use strict";
+
 const sqlite = require("sqlite3");
 const escape = require("js-string-escape");
 const exec = require("child_process").exec;
