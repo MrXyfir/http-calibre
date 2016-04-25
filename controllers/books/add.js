@@ -31,9 +31,9 @@ module.exports = function(req, res) {
                     .replace(new RegExp("[^0-9,]", 'g'), '');
                 
                 // Notify API of system's free space
-                fs.emptyDir(req.path.ul, err => disk.check('/', (err, info) => {
+                fs.emptyDir(req.path.ul, err => disk.check(process.env.rootdir, (err, info) => {
                     request.post({
-                        url: process.env.apiUrl + "book", form: {
+                        url: process.env.apiurl + "book", form: {
                             freeSpace: info.free, ids
                         }
                     }, (err, response, body) => {

@@ -18,7 +18,7 @@ module.exports = function(req, res) {
         }
         else {
             fs.remove(req.path.ul, err => {
-               disk.check('/', (err, info) => {
+               disk.check(process.env.rootdir, (err, info) => {
                    res.json({ error: false, freeSpace: info.free });
                });
             });

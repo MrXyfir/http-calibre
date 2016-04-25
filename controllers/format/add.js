@@ -31,7 +31,7 @@ module.exports = function(req, res) {
                 res.json({ error: false, fileName: req.file.filename });
                 
                 // Notify API of system's free space
-                fs.emptyDir(req.path.ul, err => disk.check('/', (err, info) => {
+                fs.emptyDir(req.path.ul, err => disk.check(process.env.rootdir, (err, info) => {
                     request.put({
                         url: process.env.updateFreeSpaceUrl, form: {
                             free: info.free

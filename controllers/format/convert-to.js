@@ -69,7 +69,7 @@ module.exports = function(req, res) {
                                         }
                                         else {
                                             // Empty upload directory and get free disk space
-                                            fs.emptyDir(req.path.ul, err => disk.check('/', (err, info) => {
+                                            fs.emptyDir(req.path.ul, err => disk.check(process.env.rootdir, (err, info) => {
                                                 res.json({ error: false, freeSpace: info.free });
                                             }));
                                         }

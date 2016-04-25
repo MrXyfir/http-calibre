@@ -40,9 +40,9 @@ module.exports = function(req, res) {
                         return row.id;
                     }).join(',');
                     
-                    fs.emptyDir(req.path.ul, err => disk.check('/', (err, info) => {
+                    fs.emptyDir(req.path.ul, err => disk.check(process.env.rootdir, (err, info) => {
                         request.post({
-                            url: process.env.apiUrl + "book", form: {
+                            url: process.env.apiurl + "book", form: {
                                 ids, freeSpace: info.free
                             }
                         }, (err, response, body) => {
