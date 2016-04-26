@@ -9,16 +9,11 @@ const fs = require("fs-extra");
 /*
     POST library/:lib/books/:book/format
     RETURN
-        { error: boolean, fileName?: string }
+        { error: boolean }
     DESCRIPTION
-        Add uploaded file of type :format to :book
+        Add new format of :book
 */
-module.exports = function(req, res) {
-    
-    if (!req.params.format.match(/^[A-Za-z0-9]{1,5}$/)) {
-        res.json({ error: true });
-        return;
-    } 
+module.exports = function(req, res) { 
     
     // Add new format from upload folder to :book
     exec(
@@ -28,12 +23,12 @@ module.exports = function(req, res) {
                 res.json({ error: true });
             }
             else {
-                res.json({ error: false, fileName: req.file.filename });
+                res.json({ error: false });
                 
                 // Notify API of system's free space
                 fs.emptyDir(req._path.ul, err => disk.check(process.env.rootdir, (err, info) => {
                     request.put({
-                        url: process.env.updateFreeSpaceUrl, form: {
+                        url: process.env.apiurl + "space", form: {
                             free: info.free
                         }
                     });
