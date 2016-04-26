@@ -24,7 +24,9 @@ module.exports = function(req, res) {
         `calibredb add --library-path ${req._path.lib} --dont-notify-gui ${files}`,
         { cwd: process.env.calibredir }, (err, data, stderr) => {
             if (err || data.indexOf("Added book ids:") == -1) {
-                res.json({ error: true });
+                fs.emptyDir(req._path.ul, err => {
+                    res.json({ error: true });
+                });
             }
             else {
                 const ids = data.split("Added book ids: ")[1]
