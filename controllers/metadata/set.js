@@ -32,7 +32,7 @@ module.exports = function(req, res) {
     }).join(' ');
     
     exec(
-        `calibredb set_metadata ${data} --library-path ${req._path.lib} --dont-notify-gui ${+req.params.book}`,
+        `calibredb set_metadata --library-path ${req._path.lib} --dont-notify-gui ${data} ${+req.params.book}`,
         { cwd: process.env.calibredir }, (err, data, stderr) => {
             if (err || data.indexOf("Backing up metadata") == -1) {
                 res.json({ error: true });
