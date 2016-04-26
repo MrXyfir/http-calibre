@@ -44,17 +44,16 @@ module.exports = function(req, res) {
             db.get(sql, vars, (err, row) => {
                 db.close();
                 
-                if (err || !rows) {
+                if (err || !row) {
                     res.json({ error: true });
                 }
                 else {
-                    path += row.name + '.' + req.params.from;
-                    
-                    const nPath = `${req._path.ul}/${row.name}.${req.params.to}`; 
+                    const nPath = path + row.name + '.' + req.params.to;
+                    path += row.name + '.' + req.params.from; 
                     
                     // Attempt to convert to new format
                     exec(
-                        `ebook-convert ${escape(path)} ${escape(nPath)}`,
+                        `ebook-convert "${escape(path)}" "${escape(nPath)}"`,
                         { cwd: process.env.calibredir }, (err, data, stderr) => {
                             if (err || data.indexOf("Output saved to") == -1) {
                                 res.json({ error: true });
@@ -68,10 +67,9 @@ module.exports = function(req, res) {
                                             res.json({ error: true });
                                         }
                                         else {
-                                            // Empty upload directory and get free disk space
-                                            fs.emptyDir(req._path.ul, err => disk.check(process.env.rootdir, (err, info) => {
+                                            disk.check(process.env.rootdir, (err, info) => {
                                                 res.json({ error: false, freeSpace: info.free });
-                                            }));
+                                            });
                                         }
                                     }
                                 )
