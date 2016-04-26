@@ -24,9 +24,6 @@ module.exports = function(req, res) {
                 res.json({ error: true });
             }
             else {
-                const ids = data.split("Added book ids: ")[1]
-                    .replace(new RegExp("[^0-9,]", 'g'), '');
-                
                 // Notify API of system's free space
                 fs.emptyDir(req._path.lib, err => disk.check(process.env.rootdir, (err, info) => {
                     res.json({ error: false, freeSpace: info.free });
