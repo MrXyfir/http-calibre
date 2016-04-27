@@ -21,6 +21,7 @@ router.route("/")
     .post(require("./library/create"))
     .put(require("./library/move"))
     .delete(require("./library/delete"));
+router.get("/size", require("./library/size"));
 router.post("/upload", uploadLibrary.single("lib"), require("./library/upload"));
 
 /* Books */
