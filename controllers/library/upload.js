@@ -42,7 +42,7 @@ module.exports = function(req, res) {
                     
                     fs.emptyDir(req._path.ul, err => disk.check(process.env.rootdir, (err, info) => {
                         request.post({
-                            url: process.env.apiurl + "book", form: {
+                            url: process.env.apiurl + "library", form: {
                                 ids, freeSpace: info.free
                             }
                         }, (err, response, body) => {
