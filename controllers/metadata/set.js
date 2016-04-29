@@ -10,9 +10,10 @@ const disk = require('diskusage');
         data: json-string
             { fields: [{ name: string, value: string }] }
     RETURN
-        { error: boolean, freeSpace?: number }
+        { error: boolean }
     DESCRIPTION
         Sets a field in book's metadata
+        Notify API of book's metadata change + server's free space
 */
 module.exports = function(req, res) {
     
@@ -38,9 +39,21 @@ module.exports = function(req, res) {
                 res.json({ error: true });
             }
             else {
-                disk.check(process.env.rootdir, (err, info) => {
-                   res.json({ error: false, freeSpace: info.free });
-               });
+                res.json({ error: false });
+                
+                exec(
+                    `calibredb embed_metadata --library-path ${req._path.lib} --dont-notify-gui ${+req.params.book}`,
+                    { cwd: process.env.calibredir }, (err, data, stderr) => {
+                        disk.check(process.env.rootdir, (err, info) => {
+                            request.put({
+                                url: process.env.apiurl + req.params.lib + "/books/" +req.params.book,
+                                form: { type: "metadata", freeSpace: info.free } 
+                            }, (err, response, body) => {
+                                res.json({ error: false });
+                            });
+                        });
+                    }
+                );
             }
         }
     );
