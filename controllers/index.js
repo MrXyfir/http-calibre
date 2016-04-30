@@ -13,6 +13,7 @@ const storage = multer.diskStorage({
 })
 
 const uploadBooks = multer({storage, limits: {fileSize: 5000001, files: 20}});
+const uploadCover = multer({storage, limits: {fileSize: 200001, files: 1}});
 const uploadLibrary = multer({storage, limits: {fileSize: 500000001, files: 1}})
 
 /* Library */
@@ -31,6 +32,8 @@ router.route("/books")
     .post(uploadBooks.array("book", 20), require("./books/add"))
     .delete(require("./books/remove"));
 router.get("/books/search", require("./books/search"));
+
+router.put("/books/:book/cover", uploadCover.single("cover"), require("./books/change-cover"));
     
 router.route("/books/:book/metadata")
     .get(require("./metadata/get"))
