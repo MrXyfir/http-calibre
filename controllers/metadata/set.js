@@ -1,5 +1,6 @@
 "use strict";
 
+const request = require("request");
 const escape = require("js-string-escape");
 const exec = require("child_process").exec;
 const disk = require('diskusage');
