@@ -12,7 +12,7 @@ const storage = multer.diskStorage({
   }
 })
 
-const isSelect = !!(+process.env.isSelect);
+const isSelect = !!(+process.env.isselect);
 
 const uploadBooks = multer({storage, limits: isSelect ? {} : {fileSize: 5000001, files: 20}});
 const uploadCover = multer({storage, limits: isSelect ? {} : {fileSize: 200001, files: 1}});
