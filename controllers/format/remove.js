@@ -1,5 +1,6 @@
 "use strict";
 
+const request = require("request");
 const escape = require("js-string-escape");
 const exec = require("child_process").exec;
 const disk = require('diskusage');
@@ -7,9 +8,10 @@ const disk = require('diskusage');
 /*
     DELETE library/:lib/books/:book/format/:format
     RETURN
-        { error: boolean, freeSpace?: number }
+        { error: boolean }
     DESCRIPTION
         Deletes a specific format of :book
+        Update server's freeSpace via API 
 */
 module.exports = function(req, res) {
     
@@ -25,8 +27,13 @@ module.exports = function(req, res) {
                 res.json({ error: true });
             }
             else {
+                res.json({ error: false });
+                
                 disk.check(process.env.rootdir, (err, info) => {
-                   res.json({ error: false, freeSpace: info.free });
+                   request.put({
+                        url: process.env.apiurl + "space",
+                        form: { free: info.free }
+                    });
                });
             }
         }
