@@ -1,5 +1,6 @@
 "use strict";
 
+const request = require("request");
 const sqlite = require("sqlite3");
 const escape = require("js-string-escape");
 const exec = require("child_process").exec;
@@ -9,11 +10,12 @@ const fs = require("fs-extra");
 /*
     POST library/:lib/books/:book/format/convert/:from/:to
     RETURN
-        { error: boolean, freeSpace?: number }
+        { error: boolean }
     DESCRIPTION
         Gets path of :from for :book from Calibre's metadata.db
         Attempts to generate a :to format version of :book using :from
         Adds newly generated version to library
+        Update server's free space via api
 */
 module.exports = function(req, res) {
     
@@ -67,8 +69,13 @@ module.exports = function(req, res) {
                                             res.json({ error: true });
                                         }
                                         else {
+                                            res.json({ error: false });
+                                                
                                             disk.check(process.env.rootdir, (err, info) => {
-                                                res.json({ error: false, freeSpace: info.free });
+                                                request.put({
+                                                    url: process.env.apiurl + "space",
+                                                    form: { free: info.free }
+                                                });
                                             });
                                         }
                                     }
