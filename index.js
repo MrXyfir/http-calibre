@@ -4,13 +4,11 @@ const express = require("express");
 const parser = require("body-parser");
 const app = express();
 
-app.listen(process.env.port, () => {
-    console.log("SERVER RUNNING ON", process.env.port);
-});
-
 app.use("/", express.static(__dirname + "/public"));
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
+
+app.use(require("cors"));
 
 app.use("/library/:lib", function(req, res, next) {
     if (!req.params.lib.match(/^[0-9]{1,10}-[A-Za-z0-9]{40}$/)) {
@@ -26,3 +24,7 @@ app.use("/library/:lib", function(req, res, next) {
     }
 });
 app.use("/library/:lib", require("./controllers/"));
+
+app.listen(process.env.port, () => {
+    console.log("SERVER RUNNING ON", process.env.port);
+});
