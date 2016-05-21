@@ -45,4 +45,12 @@ router.post("/books/:book/format/", uploadBooks.single("book"), require("./forma
 router.delete("/books/:book/format/:format", require("./format/remove"));
 router.post("/books/:book/format/convert/:from/:to", require("./format/convert-to"));
 
+/* Files */
+router.get("/files/:author/:book/:file", (req, res) => {
+    res.sendFile(
+        req._path.lib + '/' + req.params.author + '/'
+        + req.params.book + '/' + req.params.file
+    );
+});
+
 module.exports = router;
