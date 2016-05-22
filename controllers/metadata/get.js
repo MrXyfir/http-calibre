@@ -8,7 +8,7 @@ const exec = require("child_process").exec;
     REQUIRED
         author: string, title: string
         OR
-        isbn: number
+        isbn: string
     RETURN
         OK = Metadata..., ERROR = 1
     DESCRIPTION
@@ -16,8 +16,8 @@ const exec = require("child_process").exec;
 */
 module.exports = function(req, res) {
     
-    const options = req.body.isbn
-        ? `-i "${escape(req.body.isbn)}"`
+    const options = req.query.isbn
+        ? `-i "${escape(req.query.isbn)}"`
         : `-a "${escape(req.query.author)}" -t "${escape(req.query.title)}"`;
     
     exec(
