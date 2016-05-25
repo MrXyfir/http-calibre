@@ -48,8 +48,9 @@ router.post("/books/:book/format/convert/:from/:to", require("./format/convert-t
 /* Files */
 router.get("/files/:author/:book/:file", (req, res) => {
     res.sendFile(
-        req._path.lib + '/' + req.params.author + '/'
-        + req.params.book + '/' + req.params.file
+        req._path.lib + '/' + decodeURIComponent(req.params.author) + '/'
+        + decodeURIComponent(req.params.book) + '/'
+        + decodeURIComponent(req.params.file)
     );
 });
 
