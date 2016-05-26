@@ -1,5 +1,6 @@
 "use strict";
 
+const request = require("request");
 const sqlite = require("sqlite3");
 const exec = require("child_process").exec;
 const disk = require("diskusage");
@@ -40,10 +41,11 @@ module.exports = function(req, res) {
                             
                             disk.check(process.env.rootdir, (err, info) => {
                                 request.put({
-                                    url: process.env.apiurl + req.params.lib + "/books/" + +req.params.book,
+                                    url: process.env.apiurl + req._path.lib.split('/').slice(-1)
+                                        + "/books/" + +req.params.book,
                                     form: { type: "cover", freeSpace: info.free }
                                 }, (err, response, body) => {
-                                    
+                                    return;
                                 });
                             });
                         }
