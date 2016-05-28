@@ -46,12 +46,7 @@ router.delete("/books/:book/format/:format", require("./format/remove"));
 router.post("/books/:book/format/convert/:from/:to", require("./format/convert-to"));
 
 /* Files */
-router.get("/files/:author/:book/:file", (req, res) => {
-    res.sendFile(
-        req._path.lib + '/' + decodeURIComponent(req.params.author) + '/'
-        + decodeURIComponent(req.params.book) + '/'
-        + decodeURIComponent(req.params.file)
-    );
-});
+router.get("/files/:author/:book/:file", require("./files/file"));
+router.get("/files/metadata.db", require("./files/metadata"));
 
 module.exports = router;
