@@ -1,5 +1,3 @@
-"use strict";
-
 const getFolderSize = require("get-folder-size");
 
 /*
