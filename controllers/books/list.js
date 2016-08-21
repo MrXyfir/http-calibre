@@ -1,5 +1,3 @@
-"use strict";
-
 const exec = require("child_process").exec;
 
 /*
@@ -21,7 +19,7 @@ module.exports = function(req, res) {
     
     exec(
         `calibredb list --library-path ${req._path.lib} --for-machine --fields author_sort,authors,cover,formats,id,rating,series,series_index,tags,title,pubdate,publisher,last_modified,identifiers,size,timestamp,comments` + (req.query.limit ? ` --limit ${+req.query.limit}` : ''),
-        { cwd: process.env.calibredir }, (err, data, stderr) => {
+        (err, data, stderr) => {
             res.json({
                 books: err ? [] : JSON.parse(data)
             });

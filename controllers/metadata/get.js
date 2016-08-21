@@ -1,5 +1,3 @@
-"use strict";
-
 const escape = require("js-string-escape");
 const exec = require("child_process").exec;
 
@@ -22,7 +20,7 @@ module.exports = function(req, res) {
     
     exec(
         `fetch-ebook-metadata ${options}`,
-        { cwd: process.env.calibredir }, (err, data, stderr) => {
+        (err, data, stderr) => {
             if (err || data.indexOf("No results found") != -1)
                 res.send('1');
             else

@@ -1,5 +1,3 @@
-"use strict";
-
 const escape = require("js-string-escape");
 const exec = require("child_process").exec;
 
@@ -16,7 +14,7 @@ module.exports = function(req, res) {
     
     exec(
         `calibredb search "${escape(req.query.query)}" --library-path ${req._path.lib}`,
-        { cwd: process.env.calibredir }, (err, data, stderr) => {
+        (err, data, stderr) => {
             res.json({ matches: err ? [] : data.split(',') });
         }
     );
