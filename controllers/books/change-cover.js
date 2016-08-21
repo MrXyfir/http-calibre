@@ -1,10 +1,10 @@
-"use strict";
-
+const resizeDisk = require("lib/resize-disk");
 const request = require("request");
 const sqlite = require("sqlite3");
 const exec = require("child_process").exec;
-const disk = require("diskusage");
 const fs = require("fs");
+
+const config = require("config");
 
 /*
     PUT library/:lib/books/:book/cover
@@ -36,18 +36,16 @@ module.exports = function(req, res) {
                 else {
                     exec(
                         `calibredb embed_metadata --library-path ${req._path.lib} --dont-notify-gui ${+req.params.book}`,
-                        { cwd: process.env.calibredir }, (err, data, stderr) => {
+                        (err, data, stderr) => {
                             res.json({ error: false });
                             
-                            disk.check(process.env.rootdir, (err, info) => {
-                                request.put({
-                                    url: process.env.apiurl + req._path.lib.split('/').slice(-1)
-                                        + "/books/" + +req.params.book,
-                                    form: { type: "cover", freeSpace: info.free }
-                                }, (err, response, body) => {
-                                    return;
-                                });
-                            });
+                            request.put({
+                                url: config.urls.api + req._path.lib.split('/').slice(-1)
+                                    + "/books/" + +req.params.book,
+                                form: { type: "cover" }
+                            }, (err, response, body) => 1);
+
+                            resizeDisk();
                         }
                     );
                 }

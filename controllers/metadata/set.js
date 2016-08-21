@@ -1,9 +1,9 @@
-"use strict";
-
+const resizeDisk = require("lib/resize-disk");
 const request = require("request");
 const escape = require("js-string-escape");
 const exec = require("child_process").exec;
-const disk = require('diskusage');
+
+const config = require("config");
 
 /*
     PUT library/:lib/books/:book/metadata
@@ -35,7 +35,7 @@ module.exports = function(req, res) {
     
     exec(
         `calibredb set_metadata --library-path ${req._path.lib} --dont-notify-gui ${data} ${+req.params.book}`,
-        { cwd: process.env.calibredir }, (err, data, stderr) => {
+        (err, data, stderr) => {
             if (err || data.indexOf("Backing up metadata") == -1) {
                 res.json({ error: true, message: "Could not set metadata" });
             }
@@ -44,18 +44,16 @@ module.exports = function(req, res) {
 
                 exec(
                     `calibredb embed_metadata --library-path ${req._path.lib} --dont-notify-gui ${+req.params.book}`,
-                    { cwd: process.env.calibredir }, (err, data, stderr) => {
-                        disk.check(process.env.rootdir, (err, info) => {
-                            request.put({
-                                url: process.env.apiurl + req._path.lib.split('/').slice(-1)
-                                    + "/books/" + +req.params.book,
-                                form: { type: "metadata", freeSpace: info.free } 
-                            }, (err, response, body) => {
-                                return;
-                            });
-                        });
+                    (err, data, stderr) => {
+                        request.put({
+                            url: config.urls.api + req._path.lib.split('/').slice(-1)
+                                + "/books/" + +req.params.book,
+                            form: { type: "metadata" } 
+                        }, (err, response, body) => 1);
                     }
                 );
+
+                resizeDisk();
             }
         }
     );

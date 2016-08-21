@@ -1,14 +1,12 @@
-"use strict";
-
+const resizeDisk = require("lib/resize-disk");
 const exec = require("child_process").exec;
-const disk = require('diskusage');
 
 /*
     DELETE library/:lib/books
     REQUIRED
         books: string
     RETURN
-        { error: boolean, freeSpace?: number }
+        { error: boolean }
     DESCRIPTION
         Delete a list of books by id from library
 */
@@ -21,14 +19,13 @@ module.exports = function(req, res) {
     
     exec(
         `calibredb remove --library-path ${req._path.lib} --dont-notify-gui ${req.body.books}`,
-        { cwd: process.env.calibredir }, (err, data, stderr) => {
+        (err, data, stderr) => {
             if (err) {
                 res.json({ error: true });
             }
             else {
-                disk.check(process.env.rootdir, (err, info) => {
-                    res.json({ error: false, freeSpace: info.free });
-                });
+                res.json({ error: false });
+                resizeDisk();
             }
         }
     );

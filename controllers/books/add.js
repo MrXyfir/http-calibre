@@ -1,10 +1,10 @@
-"use strict";
-
+const resizeDisk = require("lib/resize-disk");
 const request = require("request");
 const escape = require("js-string-escape");
 const exec = require("child_process").exec;
-const disk = require("diskusage");
 const fs = require("fs-extra");
+
+const config = require("config");
 
 /*
     POST library/:lib/books
@@ -22,7 +22,7 @@ module.exports = function(req, res) {
     
     exec(
         `calibredb add --library-path ${req._path.lib} --dont-notify-gui ${files}`,
-        { cwd: process.env.calibredir }, (err, data, stderr) => {
+        (err, data, stderr) => {
             if (err || data.indexOf("Added book ids:") == -1) {
                 fs.emptyDir(req._path.ul, err => {
                     res.json({ error: true });
@@ -32,15 +32,26 @@ module.exports = function(req, res) {
                 const ids = data.split("Added book ids: ")[1]
                     .replace(new RegExp("[^0-9,]", 'g'), '');
                 
-                // Notify API of system's free space
-                fs.emptyDir(req._path.ul, err => disk.check(process.env.rootdir, (err, info) => {
+                // Notify Libyq of new books
+                fs.emptyDir(req._path.ul, err => {
                     request.post({
-                        url: process.env.apiurl + req._path.lib.split('/').slice(-1) + "/books",
-                        form: { freeSpace: info.free, ids }
+                        url: config.urls.api + req._path.lib.split('/').slice(-1) + "/books",
+                        form: { ids }
                     }, (err, response, body) => {
-                        res.json({ error: false });
+                        if (JSON.parse(body).error) {
+                            res.json({ error: true });
+
+                            // Delete new books
+                            exec(
+                                `calibredb add --library-path ${req._path.lib} --dont-notify-gui ${ids}`,
+                                (err, response, body) => 1
+                            );
+                        }
+                        else {
+                            resizeDisk();
+                        }
                     });
-                }));
+                });
             }
         }
     )

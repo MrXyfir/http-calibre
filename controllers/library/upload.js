@@ -1,11 +1,11 @@
-"use strict";
-
+const resizeDisk = require("lib/resize-disk");
 const request = require("request");
 const sqlite = require("sqlite3");
 const escape = require("js-string-escape");
 const exec = require("child_process").exec;
-const disk = require("diskusage");
 const fs = require("fs-extra");
+
+const config = require("config");
 
 /*
     POST library/:lib/upload
@@ -40,18 +40,18 @@ module.exports = function(req, res) {
                         return row.id;
                     }).join(',');
                     
-                    fs.emptyDir(req._path.ul, err => disk.check(process.env.rootdir, (err, info) => {
+                    fs.emptyDir(req._path.ul, err => {
                         request.post({
-                            url: process.env.apiurl + req.params.lib + "/library", form: {
-                                ids, freeSpace: info.free
-                            }
+                            url: config.urls.api + req.params.lib + "/library",
+                            form: { ids }
                         }, (err, response, body) => {
-                            if (err)
-                                res.json({ error: true });
-                            else
-                                res.json({ error: JSON.parse(body).error });
+                            res.json({
+                                error: !!err || JSON.parse(body).error
+                            });
+                            
+                            resizeDisk();
                         });
-                    }));
+                    });
                 }
             });
         }

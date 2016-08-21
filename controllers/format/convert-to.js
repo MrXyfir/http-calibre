@@ -1,10 +1,8 @@
-"use strict";
-
+const resizeDisk = require("lib/resize-disk");
 const request = require("request");
 const sqlite = require("sqlite3");
 const escape = require("js-string-escape");
 const exec = require("child_process").exec;
-const disk = require("diskusage");
 const fs = require("fs-extra");
 
 /*
@@ -56,7 +54,7 @@ module.exports = function(req, res) {
                     // Attempt to convert to new format
                     exec(
                         `ebook-convert "${escape(path)}" "${escape(nPath)}"`,
-                        { cwd: process.env.calibredir }, (err, data, stderr) => {
+                        (err, data, stderr) => {
                             if (err || data.indexOf("Output saved to") == -1) {
                                 res.json({ error: true });
                             }
@@ -64,19 +62,14 @@ module.exports = function(req, res) {
                                 // Add format to :book
                                 exec(
                                     `calibredb add_format --library-path ${req._path.lib} --dont-notify-gui ${+req.params.book} "${escape(nPath)}"`,
-                                    { cwd: process.env.calibredir }, (err, data, stderr) => {
+                                    (err, data, stderr) => {
                                         if (err || data.indexOf("Error") != -1) {
                                             res.json({ error: true });
                                         }
                                         else {
                                             res.json({ error: false });
-                                                
-                                            disk.check(process.env.rootdir, (err, info) => {
-                                                request.put({
-                                                    url: process.env.apiurl + "space",
-                                                    form: { free: info.free }
-                                                });
-                                            });
+ 
+                                            resizeDisk();
                                         }
                                     }
                                 )

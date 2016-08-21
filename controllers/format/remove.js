@@ -1,9 +1,7 @@
-"use strict";
-
+const resizeDisk = require("lib/resize-disk");
 const request = require("request");
 const escape = require("js-string-escape");
 const exec = require("child_process").exec;
-const disk = require('diskusage');
 
 /*
     DELETE library/:lib/books/:book/format/:format
@@ -22,19 +20,13 @@ module.exports = function(req, res) {
     
     exec(
         `calibredb remove_format --library-path ${req._path.lib} --dont-notify-gui ${+req.params.book} ${req.params.format}`,
-        { cwd: process.env.calibredir }, (err, data, stderr) => {
+        (err, data, stderr) => {
             if (err) {
                 res.json({ error: true });
             }
             else {
                 res.json({ error: false });
-                
-                disk.check(process.env.rootdir, (err, info) => {
-                   request.put({
-                        url: process.env.apiurl + "space",
-                        form: { free: info.free }
-                    });
-               });
+                resizeDisk();
             }
         }
     );
