@@ -1,5 +1,3 @@
-"use strict";
-
 const router = require("express").Router();
 const multer = require("multer");
 
@@ -8,21 +6,18 @@ const storage = multer.diskStorage({
     cb(null, req._path.ul)
   },
   filename: function(req, file, cb) {
-    cb( null, Date.now().toString().substr(-4) + '-' + file.originalname);
+    cb(null, Date.now().toString().substr(-4) + '-' + file.originalname);
   }
 })
 
-const isSelect = !!(+process.env.isselect);
-
-const uploadBooks = multer({storage, limits: isSelect ? {} : {fileSize: 5000001, files: 20}});
-const uploadCover = multer({storage, limits: isSelect ? {} : {fileSize: 200001, files: 1}});
-const uploadLibrary = multer({storage, limits: isSelect ? {} : {fileSize: 500000001, files: 1}})
+const uploadBooks = multer({storage, limits: {fileSize: 5000001, files: 20}});
+const uploadCover = multer({storage, limits: {fileSize: 200001, files: 1}});
+const uploadLibrary = multer({storage, limits: {fileSize: 500000001, files: 1}})
 
 /* Library */
 
 router.route("/")
     .post(require("./library/create"))
-    .put(require("./library/move"))
     .delete(require("./library/delete"));
 router.get("/size", require("./library/size"));
 router.post("/upload", uploadLibrary.single("lib"), require("./library/upload"));
