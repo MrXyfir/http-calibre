@@ -2,7 +2,7 @@ const escape = require("js-string-escape");
 const exec = require("child_process").exec;
 
 /*
-    GET library/:lib/books/search
+    GET :lib/books/search
     REQUIRED
         query: string
     RETURN

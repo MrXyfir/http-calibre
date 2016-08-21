@@ -2,7 +2,7 @@ const resizeDisk = require("lib/resize-disk");
 const fs = require("fs-extra");
 
 /*
-    DELETE library/:lib
+    DELETE :lib
     RETURN
         { error: boolean }
     DESCRIPTION

@@ -6,7 +6,7 @@ const exec = require("child_process").exec;
 const config = require("config");
 
 /*
-    PUT library/:lib/books/:book/metadata
+    PUT :lib/books/:book/metadata
     REQUIRED
         data: json-string
             { key: value, key2: value, ... }

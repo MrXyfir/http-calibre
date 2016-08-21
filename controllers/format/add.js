@@ -5,7 +5,7 @@ const exec = require("child_process").exec;
 const fs = require("fs-extra");
 
 /*
-    POST library/:lib/books/:book/format
+    POST :lib/books/:book/format
     RETURN
         { error: boolean }
     DESCRIPTION

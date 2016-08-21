@@ -10,7 +10,7 @@ app.use(parser.urlencoded({ extended: true }));
 
 app.use(require("cors")());
 
-app.use("/library/:lib", function(req, res, next) {
+app.use("/:lib", function(req, res, next) {
     if (!req.params.lib.match(/^[0-9]{1,10}-[A-Za-z0-9]{40}$/)) {
         res.json({ error: true });
     }
@@ -24,7 +24,7 @@ app.use("/library/:lib", function(req, res, next) {
         next();
     }
 });
-app.use("/library/:lib", require("./controllers/"));
+app.use("/:lib", require("./controllers/"));
 
 app.listen(config.environment.port, () => {
     console.log("~~Server running on port", config.environment.port);

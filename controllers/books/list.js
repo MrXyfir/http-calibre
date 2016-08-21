@@ -1,7 +1,7 @@
 const exec = require("child_process").exec;
 
 /*
-    GET library/:lib/books
+    GET :lib/books
     OPTIONAL
         limit: number
     RETURN
