@@ -1,10 +1,9 @@
-"use strict";
+require("app-module-path").addPath(__dirname);
 
 const express = require("express");
 const parser = require("body-parser");
+const config = require("config");
 const app = express();
-
-app.use("/", express.static(__dirname + "/public"));
 
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
@@ -17,8 +16,8 @@ app.use("/library/:lib", function(req, res, next) {
     }
     else {
         req._path = {
-            lib: process.env.libdir + '/' + req.params.lib,
-            ul: process.env.uldir + '/' + req.params.lib
+            lib: config.directories.libraries + '/' + req.params.lib,
+            ul: config.directories.uploads + '/' + req.params.lib
         };
         
         next();
@@ -26,6 +25,6 @@ app.use("/library/:lib", function(req, res, next) {
 });
 app.use("/library/:lib", require("./controllers/"));
 
-app.listen(process.env.port, () => {
-    console.log("SERVER RUNNING ON", process.env.port);
+app.listen(config.environment.port, () => {
+    console.log("~~Server running on port", config.environment.port);
 });
