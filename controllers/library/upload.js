@@ -15,7 +15,7 @@ const config = require("config");
         Empty previous library directory
 		Unzip file into library folder
 		Grab all book ids from metadata.db
-		Send book ids / disk space to core API
+		Send book ids to core API
 */
 module.exports = function(req, res) {
     

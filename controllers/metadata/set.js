@@ -14,7 +14,7 @@ const config = require("config");
         { error: boolean, message?: string }
     DESCRIPTION
         Sets a field in book's metadata
-        Notify API of book's metadata change + server's free space
+        Notify API of book's metadata change
 */
 module.exports = function(req, res) {
     

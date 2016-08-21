@@ -12,7 +12,7 @@ const config = require("config");
         { error: boolean }
     DESCRIPTION
         Updates a book's cover with uploaded image
-        Calls main API to update book's cover version + server's free space
+        Calls main API to update book's cover version
 */
 module.exports = function(req, res) {
     

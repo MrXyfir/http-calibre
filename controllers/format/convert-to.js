@@ -13,7 +13,6 @@ const fs = require("fs-extra");
         Gets path of :from for :book from Calibre's metadata.db
         Attempts to generate a :to format version of :book using :from
         Adds newly generated version to library
-        Update server's free space via api
 */
 module.exports = function(req, res) {
     

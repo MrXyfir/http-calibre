@@ -9,7 +9,6 @@ const exec = require("child_process").exec;
         { error: boolean }
     DESCRIPTION
         Deletes a specific format of :book
-        Update server's freeSpace via API 
 */
 module.exports = function(req, res) {
     

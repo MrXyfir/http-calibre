@@ -12,7 +12,7 @@ const config = require("config");
         { error: boolean }
     DESCRIPTION
         Add uploadeded books to library
-        Notify core API of free storage space and new book(s)
+        Notify core API of new book(s)
 */
 module.exports = function(req, res) { 
     
