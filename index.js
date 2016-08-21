@@ -19,6 +19,7 @@ app.use("/library/:lib", function(req, res, next) {
             lib: config.directories.libraries + '/' + req.params.lib,
             ul: config.directories.uploads + '/' + req.params.lib
         };
+        req._libId = req.params.lib;
         
         next();
     }
