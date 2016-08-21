@@ -40,7 +40,7 @@ module.exports = function(req, res) {
                             res.json({ error: false });
                             
                             request.put({
-                                url: config.urls.api + req._path.lib.split('/').slice(-1)
+                                url: config.urls.api + req._libId
                                     + "/books/" + +req.params.book,
                                 form: { type: "cover" }
                             }, (err, response, body) => 1);

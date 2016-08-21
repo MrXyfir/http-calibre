@@ -46,7 +46,7 @@ module.exports = function(req, res) {
                     `calibredb embed_metadata --library-path ${req._path.lib} --dont-notify-gui ${+req.params.book}`,
                     (err, data, stderr) => {
                         request.put({
-                            url: config.urls.api + req._path.lib.split('/').slice(-1)
+                            url: config.urls.api + req._libId
                                 + "/books/" + +req.params.book,
                             form: { type: "metadata" } 
                         }, (err, response, body) => 1);

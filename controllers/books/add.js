@@ -35,7 +35,7 @@ module.exports = function(req, res) {
                 // Notify Libyq of new books
                 fs.emptyDir(req._path.ul, err => {
                     request.post({
-                        url: config.urls.api + req._path.lib.split('/').slice(-1) + "/books",
+                        url: config.urls.api + req._libId + "/books",
                         form: { ids }
                     }, (err, response, body) => {
                         if (JSON.parse(body).error) {
