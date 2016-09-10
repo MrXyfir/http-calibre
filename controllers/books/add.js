@@ -38,7 +38,7 @@ module.exports = function(req, res) {
                         url: config.urls.api + req._libId + "/books",
                         form: { ids }
                     }, (err, response, body) => {
-                        if (JSON.parse(body).error) {
+                        if (err || JSON.parse(body).error) {
                             res.json({ error: true });
 
                             // Delete new books
@@ -48,6 +48,7 @@ module.exports = function(req, res) {
                             );
                         }
                         else {
+                            res.json({ error: false });
                             resizeDisk();
                         }
                     });
