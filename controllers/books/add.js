@@ -38,15 +38,17 @@ module.exports = function(req, res) {
                         url: config.urls.api + req._libId + "/books",
                         form: { ids }
                     }, (err, response, body) => {
+                        // Error adding books to Libyq
                         if (err || JSON.parse(body).error) {
                             res.json({ error: true });
 
-                            // Delete new books
+                            // Delete newly added books
                             exec(
-                                `calibredb add --library-path ${req._path.lib} --dont-notify-gui ${ids}`,
+                                `calibredb remove --library-path ${req._path.lib} --dont-notify-gui ${ids}`,
                                 (err, response, body) => 1
                             );
                         }
+                        // Libyq accepted new books
                         else {
                             res.json({ error: false });
                             resizeDisk();
