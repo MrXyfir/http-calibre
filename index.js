@@ -2,8 +2,13 @@ require("app-module-path").addPath(__dirname);
 
 const express = require("express");
 const parser = require("body-parser");
+
 const config = require("config");
 const app = express();
+
+if (config.environment.type == "dev") {
+	app.use(require("cors")());
+}
 
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
