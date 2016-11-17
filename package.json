@@ -11,6 +11,7 @@
   "dependencies": {
     "app-module-path": "^2.1.0",
     "body-parser": "^1.15.0",
+    "cors": "^2.8.1",
     "digitalocean": "^0.8.3",
     "diskusage": "^0.1.5",
     "express": "^4.13.4",
