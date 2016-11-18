@@ -13,6 +13,10 @@ if (config.environment.type == "dev") {
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
 
+if (config.environment.type == "dev") {
+    app.use("/files/:lib", require("./controllers/files/"));
+}
+
 app.use("/:lib", function(req, res, next) {
     if (!req.params.lib.match(/^[0-9]{1,10}-[A-Za-z0-9]{40}$/)) {
         res.json({ error: true });

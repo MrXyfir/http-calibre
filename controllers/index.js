@@ -40,8 +40,4 @@ router.post("/books/:book/format/", uploadBooks.single("book"), require("./forma
 router.delete("/books/:book/format/:format", require("./format/remove"));
 router.post("/books/:book/format/convert/:from/:to", require("./format/convert-to"));
 
-/* Files */
-router.get("/files/:author/:book/:file", require("./files/file"));
-router.get("/files/metadata.db", require("./files/metadata"));
-
 module.exports = router;
