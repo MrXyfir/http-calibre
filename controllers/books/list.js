@@ -1,9 +1,7 @@
-const exec = require("child_process").exec;
+const spawn = require("child_process").spawn;
 
 /*
     GET :lib/books
-    OPTIONAL
-        limit: number
     RETURN
         { books: [{
             author_sort: string, authors: string, cover: string, formats: string[],
@@ -16,28 +14,44 @@ const exec = require("child_process").exec;
         Return metadata / info for books in library
 */
 module.exports = function(req, res) {
-    
-    exec(
-        `calibredb list --library-path ${req._path.lib} --for-machine --fields author_sort,authors,cover,formats,id,rating,series,series_index,tags,title,pubdate,publisher,last_modified,identifiers,size,timestamp,comments` + (req.query.limit ? ` --limit ${+req.query.limit}` : ''),
-        (err, data, stderr) => {
-            if (err) {
-                res.json({ books: [] });
-            }
-            else {
-                // Ensure books[i].cover|formats paths are only
-                // author_folder/book_folder/file and not full file paths
-                res.json({
-                    books: JSON.parse(data).map(book => {
-                        return Object.assign({}, book, {
-                            cover: book.cover.split('/').slice(-3).join('/'),
-                            formats: book.formats.map(format => {
-                                return format.split('/').slice(-3).join('/');
-                            })
-                        });
-                    })
-                });
-            }
+
+    const calibre = spawn("calibredb", [
+        "list",
+        "--library-path", req._path.lib,
+        "--for-machine",
+        "--fields", "author_sort,authors,cover,formats,id,rating,series,"
+            + "series_index,tags,title,pubdate,publisher,last_modified,"
+            + "identifiers,size,timestamp,comments"
+    ]);
+
+    let output = "";
+
+    calibre.stdout.on("data", (data) => output += data);
+
+    calibre.stderr.on("data", (data) => {
+        res.json({ books: [] });
+    });
+
+    calibre.on("close", (code) => {
+        if (code == 0) {
+            output = JSON.parse(output);
+
+            // Ensure books[i].cover|formats paths are only
+            // author_folder/book_folder/file and not full file paths
+            res.json({
+                books: output.map(book => {
+                    return Object.assign({}, book, {
+                        cover: book.cover.split('/').slice(-3).join('/'),
+                        formats: book.formats.map(format => {
+                            return format.split('/').slice(-3).join('/');
+                        })
+                    });
+                })
+            });
         }
-    );
+        else {
+            res.json({ books: [] });
+        }
+    });
     
 };
