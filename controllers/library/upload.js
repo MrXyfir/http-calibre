@@ -51,7 +51,7 @@ module.exports = function(req, res) {
                             
                             fs.emptyDir(req._path.ul, err => {
                                 request.post({
-                                    url: config.urls.api + req.params.lib
+                                    url: config.urls.api + req._libId
                                         + "/library",
                                     form: { ids }
                                 }, (err, response, body) => {
