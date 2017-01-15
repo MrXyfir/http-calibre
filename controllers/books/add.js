@@ -32,13 +32,13 @@ module.exports = function(req, res) {
                 const ids = data.split("Added book ids: ")[1]
                     .replace(new RegExp("[^0-9,]", 'g'), '');
                 
-                // Notify Libyq of new books
+                // Notify Xyfir Books of new books
                 fs.emptyDir(req._path.ul, err => {
                     request.post({
                         url: config.urls.api + req._libId + "/books",
                         form: { ids }
                     }, (err, response, body) => {
-                        // Error adding books to Libyq
+                        // Error adding books to Xyfir Books
                         if (err || JSON.parse(body).error) {
                             res.json({ error: true });
 
@@ -48,7 +48,7 @@ module.exports = function(req, res) {
                                 (err, response, body) => 1
                             );
                         }
-                        // Libyq accepted new books
+                        // Xyfir Books accepted new books
                         else {
                             res.json({ error: false });
                             resizeDisk();
