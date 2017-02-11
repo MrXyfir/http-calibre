@@ -39,8 +39,8 @@ router.route("/books/:book/metadata")
     .get(require("./metadata/get"))
     .put(require("./metadata/set"));
 
-router.post("/books/:book/format/", uploadBooks.single("book"), require("./format/add"));
+router.post("/books/:book/format", uploadBooks.single("book"), require("./format/add"));
 router.delete("/books/:book/format/:format", require("./format/remove"));
-router.post("/books/:book/format/convert/:from/:to", require("./format/convert-to"));
+router.post("/books/:book/format/convert", require("./format/convert-to"));
 
 module.exports = router;
