@@ -65,7 +65,9 @@ module.exports = function(req, res) {
             throw 'Could not convert format';
           
           // Add new format at nPath to book at req.params.book
-          return calibre.run('add_format', [+req.params.book, nPath]);
+          return calibre.run(
+            'calibredb add_format', [+req.params.book, nPath]
+          );
         })
         .then(result => {
           if (result.indexOf('Error') > -1)
