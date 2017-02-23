@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "app-module-path": "^2.2.0",
-    "body-parser": "^1.15.0",
+    "body-parser": "^1.16.1",
     "cors": "^2.8.1",
     "digitalocean": "^0.9.1",
     "diskusage": "^0.2.1",
@@ -20,8 +20,9 @@
     "get-folder-size": "^1.0.0",
     "js-string-escape": "^1.0.1",
     "multer": "^1.2.1",
+    "node-calibre": "^1.0.1",
     "request": "^2.79.0",
     "sqlite3": "^3.1.8",
-    "superagent": "^3.4.2"
+    "superagent": "^3.5.0"
   }
 }
