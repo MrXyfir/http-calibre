@@ -1,5 +1,5 @@
 const resizeDisk = require('lib/resize-disk');
-const Calibre = require('lib/Calibre');
+const Calibre = require('node-calibre');
 const request = require('superagent');
 const sqlite = require('sqlite3');
 const fs = require('fs-extra');
@@ -56,10 +56,11 @@ module.exports = function(req, res) {
       const nPath = path + row.name + '.' + req.query.to;
       path += row.name + '.' + req.query.from; 
 
-      const calibre = new Calibre(req._path.lib);
+      const calibre = new Calibre({ library: req._path.lib });
 
       // Convert file at path to new file at nPath
-      calibre.run('ebook-convert', [path, nPath])
+      calibre
+        .run('ebook-convert', [path, nPath])
         .then(result => {
           if (result.indexOf('Output saved to') == -1)
             throw 'Could not convert format';

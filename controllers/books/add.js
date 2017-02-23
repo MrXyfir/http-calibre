@@ -1,6 +1,6 @@
 const resizeDisk = require('lib/resize-disk');
 const request = require('superagent');
-const Calibre = require('lib/Calibre');
+const Calibre = require('node-calibre');
 const fs = require('fs-extra');
 
 const config = require('config');
@@ -15,12 +15,13 @@ const config = require('config');
 */
 module.exports = function(req, res) { 
   
-  const calibre = new Calibre(req._path.lib),
+  const calibre = new Calibre({ library: req._path.lib }),
   files = req.files.map(file => file.path);
 
   let removeBooks = false, ids = '';
 
-  calibre.run('calibredb add', files)
+  calibre
+    .run('calibredb add', files)
     .then(result => {
       if (result.indexOf('Added book ids:') == -1)
         throw 'Could not add book(s)';
