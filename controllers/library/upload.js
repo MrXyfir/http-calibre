@@ -55,6 +55,8 @@ module.exports = async function(req, res) {
         });
     });
 
+    res.json({ error: false });
+
     fs.emptyDir(req._path.ul, () => 1);
     resizeDisk();
   }
