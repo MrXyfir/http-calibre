@@ -14,8 +14,8 @@ app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
 
 app.use(['/files/:lib', '/:lib'], function(req, res, next) {
-  if (!req.params.lib.match(/^[0-9]{1,10}-[A-Za-z0-9]{40}$/)) {
-    res.json({ error: true });
+  if (!req.params.lib.match(/^[0-9]{1,10}-[A-Za-z0-9]{40,128}$/)) {
+    res.json({ error: true, message: 'Invalid library id' });
   }
   else {
     req._path = {
