@@ -2,7 +2,7 @@
   "name": "xyfir-library",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,17 +10,20 @@
   "license": "ISC",
   "dependencies": {
     "app-module-path": "^2.2.0",
+    "archiver": "^2.0.0",
     "body-parser": "^1.17.2",
-    "cors": "^2.8.3",
+    "cors": "^2.8.4",
+    "cron": "^1.2.1",
     "digitalocean": "^0.10.0",
     "diskusage": "^0.2.2",
     "express": "^4.15.3",
     "extract-zip": "^1.6.5",
-    "fs-extra": "^3.0.1",
+    "fs-extra": "^4.0.0",
     "get-folder-size": "^1.0.0",
     "js-string-escape": "^1.0.1",
+    "mailgun-js": "^0.11.3",
     "multer": "^1.2.1",
-    "node-calibre": "^1.0.1",
+    "node-calibre": "^1.1.0",
     "request": "^2.81.0",
     "sqlite3": "^3.1.8",
     "superagent": "^3.5.2"
