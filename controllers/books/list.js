@@ -1,7 +1,7 @@
 const spawn = require('child_process').spawn;
 
 /*
-  GET :lib/books
+  GET libraries/:lib/books
   RETURN
     { books: [{
       author_sort: string, authors: string, cover: string, formats: string[],

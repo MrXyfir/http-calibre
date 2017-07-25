@@ -4,7 +4,7 @@ const escape = require("js-string-escape");
 const exec = require("child_process").exec;
 
 /*
-    DELETE :lib/books/:book/format/:format
+    DELETE libraries/:lib/books/:book/format/:format
     RETURN
         { error: boolean }
     DESCRIPTION

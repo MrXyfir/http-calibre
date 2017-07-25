@@ -5,7 +5,7 @@ const sqlite = require('sqlite3');
 const fs = require('fs-extra');
 
 /*
-  POST :lib/books/:book/format/convert
+  POST libraries/:lib/books/:book/format/convert
   REQUIRED
     from: string, to: string
   RETURN

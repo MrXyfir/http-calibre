@@ -2,7 +2,7 @@ const resizeDisk = require("lib/resize-disk");
 const exec = require("child_process").exec;
 
 /*
-    DELETE :lib/books
+    DELETE libraries/:lib/books
     REQUIRED
         books: string
     RETURN

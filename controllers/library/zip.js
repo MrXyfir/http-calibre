@@ -8,7 +8,7 @@ const mailgun = require('mailgun-js')({
 });
 
 /*
-  POST :lib/zip
+  POST libraries/:lib/zip
   REQUIRED
     email: string
   RETURN

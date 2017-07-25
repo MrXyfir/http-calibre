@@ -2,7 +2,7 @@ const escape = require("js-string-escape");
 const exec = require("child_process").exec;
 
 /*
-    GET :lib/books/:book/metadata
+    GET libraries/:lib/books/:book/metadata
     REQUIRED
         author: string, title: string
         OR

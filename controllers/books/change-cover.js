@@ -7,7 +7,7 @@ const fs = require("fs");
 const config = require("config");
 
 /*
-    PUT :lib/books/:book/cover
+    PUT libraries/:lib/books/:book/cover
     RETURN
         { error: boolean }
     DESCRIPTION

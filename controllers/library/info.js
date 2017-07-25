@@ -1,7 +1,7 @@
 const getFolderSize = require('get-folder-size');
 
 /*
-  GET :lib
+  GET libraries/:lib
   RETURN
     { error: boolean, size?: number }
   DESCRIPTION

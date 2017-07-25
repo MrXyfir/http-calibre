@@ -7,7 +7,7 @@ const fs = require('fs-extra');
 const config = require('config');
 
 /*
-  POST :lib/upload
+  POST libraries/:lib/upload
   RETURN
     { error: boolean, message?: string }
   DESCRIPTION

@@ -1,7 +1,7 @@
 const fs = require("fs-extra");
 
 /*
-    POST :lib
+    POST libraries/:lib
     RETURN
        { error: boolean }
     DESCRIPTION
