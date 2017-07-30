@@ -14,7 +14,7 @@ const storage = multer.diskStorage({
 })
 
 const uploadBooks = multer({
-  storage, limits: {fileSize: 5000001, files: 20}
+  storage, limits: {fileSize: 100000001, files: 20}
 });
 const uploadCover = multer({
   storage, limits: {fileSize: 5000001, files: 1}
