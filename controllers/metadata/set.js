@@ -29,8 +29,8 @@ module.exports = async function(req, res) {
         { f: `${field}:${fields[field]}` }
       );
 
-      if (result.indexOf('Backing up metadata') == -1)
-        throw 'Could not set metadata';
+      if (result.indexOf('is not a known field') != -1)
+        throw `Invalid field "${field}"`;
     }
 
     await calibre.run('calibredb embed_metadata', [+req.params.book]);
