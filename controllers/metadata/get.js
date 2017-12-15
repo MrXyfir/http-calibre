@@ -1,31 +1,34 @@
-const escape = require("js-string-escape");
-const exec = require("child_process").exec;
+const Calibre = require('node-calibre');
 
 /*
-    GET libraries/:lib/books/:book/metadata
-    REQUIRED
-        author: string, title: string
-        OR
-        isbn: string
-    RETURN
-        OK = Metadata..., ERROR = 1
-    DESCRIPTION
-        Fetches an ebook's metadata
+  GET libraries/:lib/books/:book/metadata
+  REQUIRED
+    author: string, title: string
+    OR
+    isbn: string
+  RETURN
+    { error: boolean, message?: string, metadata?: string }
+  DESCRIPTION
+    Fetches an ebook's metadata
 */
-module.exports = function(req, res) {
-    
-    const options = req.query.isbn
-        ? `-i "${escape(req.query.isbn)}"`
-        : `-a "${escape(req.query.author)}" -t "${escape(req.query.title)}"`;
-    
-    exec(
-        `fetch-ebook-metadata ${options}`,
-        (err, data, stderr) => {
-            if (err || data.indexOf("No results found") != -1)
-                res.send('1');
-            else
-                res.send(data);
-        }
+module.exports = async function(req, res) {
+
+  const calibre = new Calibre({ library: req._path.lib });
+
+  try {
+    const result = await calibre.run(
+      'fetch-ebook-metadata', [],
+      req.query.isbn
+        ? { i: req.query.isbn }
+        : { a: req.query.author, t: req.query.title }
     );
-    
-};
+
+    if (result.indexOf('No results found') != -1) throw result;
+
+    res.json({ error: false, metadata: result });
+  }
+  catch (err) {
+    res.json({ error: true, message: err });
+  }
+
+}
