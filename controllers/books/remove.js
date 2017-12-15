@@ -1,33 +1,28 @@
-const resizeDisk = require("lib/resize-disk");
-const exec = require("child_process").exec;
+const Calibre = require('node-calibre');
 
 /*
-    DELETE libraries/:lib/books
-    REQUIRED
-        books: string
-    RETURN
-        { error: boolean }
-    DESCRIPTION
-        Delete a list of books by id from library
+  DELETE libraries/:lib/books
+  REQUIRED
+    books: string
+  RETURN
+    { error: boolean, message?: string }
+  DESCRIPTION
+    Delete a list of books by id from library
 */
-module.exports = function(req, res) {
-    
-    if (!req.body.books || !req.body.books.match(/^[0-9,]{1,}$/)) {
-        res.json({ error: true });
-        return;
-    }
-    
-    exec(
-        `calibredb remove --library-path ${req._path.lib} --dont-notify-gui ${req.body.books}`,
-        (err, data, stderr) => {
-            if (err) {
-                res.json({ error: true });
-            }
-            else {
-                res.json({ error: false });
-                resizeDisk();
-            }
-        }
-    );
-    
+module.exports = async function(req, res) {
+
+  const calibre = new Calibre({ library: req._path.lib });
+
+  try {
+    if (!req.body.books || !req.body.books.match(/^[0-9,]{1,}$/))
+      throw 'Missing or invalid book ids';
+
+    await calibre.run('calibredb remove', [req.body.books]);
+
+    res.json({ error: false });
+  }
+  catch (err) {
+    res.json({ error: true, message: err });
+  }
+
 };
