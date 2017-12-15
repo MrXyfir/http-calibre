@@ -1,14 +1,16 @@
-const spawn = require('child_process').spawn;
+const {spawn} = require('child_process');
 
 /*
   GET libraries/:lib/books
   RETURN
     { books: [{
+      last_modified: string, size: number, timestamp: number, comments: string,
       author_sort: string, authors: string, cover: string, formats: string[],
       tags: string[], title: string, pubdate: string, publisher: string,
       id: number, rating: number, series: string, series_index: number,
-      last_modified: string, identifiers: string, size: number,
-      timestamp: number, comments: string
+      identifiers: {
+        [type: string]: string|number
+      }
     }]}
   DESCRIPTION
     Return metadata / info for books in library
@@ -19,9 +21,10 @@ module.exports = function(req, res) {
     'list',
     '--library-path', req._path.lib,
     '--for-machine',
-    '--fields', 'author_sort,authors,cover,formats,id,rating,series,'
-      + 'series_index,tags,title,pubdate,publisher,last_modified,'
-      + 'identifiers,size,timestamp,comments'
+    '--fields',
+      'author_sort,authors,cover,formats,id,rating,series,' +
+      'series_index,tags,title,pubdate,publisher,last_modified,' +
+      'identifiers,size,timestamp,comments'
   ]);
 
   let output = '', sent = false;
@@ -39,7 +42,7 @@ module.exports = function(req, res) {
     if (code == 0) {
       const defaults = {
         cover: String, rating: Number, series: String, publisher: String,
-        identifiers: String, comments: String
+        identifiers: Object, comments: String
       };
 
       output = JSON.parse(output)
