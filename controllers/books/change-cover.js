@@ -1,56 +1,52 @@
-const resizeDisk = require("lib/resize-disk");
-const request = require("request");
-const sqlite = require("sqlite3");
-const exec = require("child_process").exec;
-const fs = require("fs");
-
-const config = require("config");
+const Calibre = require('node-calibre');
+const request = require('superagent');
+const sqlite = require('sqlite3');
+const config = require('config');
+const fs = require('fs-extra');
 
 /*
-    PUT libraries/:lib/books/:book/cover
-    RETURN
-        { error: boolean }
-    DESCRIPTION
-        Updates a book's cover with uploaded image
-        Calls main API to update book's cover version
+  PUT libraries/:lib/books/:book/cover
+  RETURN
+    { error: boolean, message?: string }
+  DESCRIPTION
+    Updates a book's cover with uploaded image
+    Calls main API to update book's cover version
 */
-module.exports = function(req, res) {
-    
-    const db = new sqlite.Database(req._path.lib + "/metadata.db");
-    
-    // Grab book's path within library
-    db.get("SELECT path FROM books WHERE id = ?", [+req.params.book], (err, row) => {
-        db.close();
-        
-        if (err || !row) {
-            res.json({ error: true });
-        }
-        else {
-            const path = req._path.lib + '/' + row.path + "/cover.jpg";
-            
-            // Overwrite old cover image
-            fs.rename(req.file.path, path, err => {
-                if (err) {
-                    res.json({ error: true });
-                }
-                else {
-                    exec(
-                        `calibredb embed_metadata --library-path ${req._path.lib} --dont-notify-gui ${+req.params.book}`,
-                        (err, data, stderr) => {
-                            res.json({ error: false });
-                            
-                            request.put({
-                                url: config.urls.api + req._libId
-                                    + "/books/" + +req.params.book,
-                                form: { type: "cover" }
-                            }, (err, response, body) => 1);
+module.exports = async function(req, res) {
 
-                            resizeDisk();
-                        }
-                    );
-                }
-            });
-        }
-    });
-    
-};
+  const calibre = new Calibre({ library: req._path.lib });
+  const db = new sqlite.Database(req._path.lib + '/metadata.db');
+
+  try {
+    // Grab book's path within library
+    const row = await new Promise((resolve, reject) =>
+      db.get(
+        'SELECT path FROM books WHERE id = ?',
+        [+req.params.book],
+        (err, row) => err ? reject(err) : resolve(row)
+      )
+    );
+    db.close();
+
+    if (!row) throw 'Could not find book';
+
+    // Move newly uploaded cover file to replace current cover file
+    await fs.rename(req.file.path, `${req._path.lib}/${row.path}/cover.jpg`);
+
+    // Embed metadata for book
+    await calibre.run('calibredb embed_metadata', [+req.params.book]);
+
+    // Tell xyBooks that the cover has been updated
+    request
+      .put(`${config.urls.api}${req._libId}/books/${+req.params.book}`)
+      .send({ type: 'cover' })
+      .end((err, res) => 1);
+
+    res.json({ error: false });
+  }
+  catch (err) {
+    res.json({ error: true, message: err });
+    db.close();
+  }
+
+}
