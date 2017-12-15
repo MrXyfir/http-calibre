@@ -18,6 +18,8 @@ module.exports = async function(req, res) {
     await calibre.run(
       'calibredb remove_format', [+req.params.book, req.params.format]
     );
+
+    res.json({ error: false });
   }
   catch (err) {
     res.json({ error: true, message: err });
