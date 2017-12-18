@@ -25,16 +25,19 @@ module.exports = function(req, res) {
     output   = fs.createWriteStream(filePath);
 
   const archive = archiver('zip', { zlib: { level: 9 } });
-  
+
   output.on('close', () =>
     mailgun.messages().send({
       subject: 'Xyfir Books Library Download Link',
-      from: 'Xyfir Library <library@xyfir.com>',
-      text: 'https://library.xyfir.com/downloads/' + file,
+      from: 'Xyfir Books <books@xyfir.com>',
+      text:
+        'https://books.xyfir.com/library/downloads/' + file +
+        '\n\n' +
+        'This link will expire in 24 hours.',
       to: req.body.email
     }, () => 1)
   );
-  
+
   archive.on('error', async err => {
     await fs.unlink(filePath);
   });
@@ -45,5 +48,5 @@ module.exports = function(req, res) {
   archive.directory(req._path.lib, false);
   // No more data to be added
   archive.finalize();
-  
+
 };
