@@ -1,5 +1,4 @@
 const Calibre = require('node-calibre');
-const request = require('superagent');
 const sqlite = require('sqlite3');
 const config = require('config');
 const fs = require('fs-extra');
@@ -35,12 +34,6 @@ module.exports = async function(req, res) {
 
     // Embed metadata for book
     await calibre.run('calibredb embed_metadata', [+req.params.book]);
-
-    // Tell xyBooks that the cover has been updated
-    request
-      .put(`${config.urls.api}${req._libId}/books/${+req.params.book}`)
-      .send({ type: 'cover' })
-      .end((err, res) => 1);
 
     res.json({ error: false });
   }
