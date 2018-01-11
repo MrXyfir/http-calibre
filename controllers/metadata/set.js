@@ -4,36 +4,44 @@ const config = require('config');
 
 /*
   PUT libraries/:lib/books/:book/metadata
-  REQUIRED
-    data: json-string
-      { key: value, key2: value, ... }
+  OPTIONAL
+    normal: { [field: string]: any },
+    xyfir: { [field: string]: any }
   RETURN
     { error: boolean, message?: string }
   DESCRIPTION
-    Sets a field in book's metadata
-    Notify API of book's metadata change
+    Sets fields in a book's metadata
 */
 module.exports = async function(req, res) {
 
+  const { normal, xyfir } = req.body;
   const calibre = new Calibre({ library: req._path.lib });
-  let fields = {};
+  const book = +req.params.book;
 
   try {
-    try { fields = JSON.parse(req.body.data); }
-    catch (err) { throw 'Bad fields'; }
+    if (normal) {
+      for (let field in normal) {
+        const result = await calibre.run(
+          'calibredb set_metadata',
+          [book],
+          { f: `${field}:${normal[field]}` }
+        );
 
-    for (let field in fields) {
-      const result = await calibre.run(
-        'calibredb set_metadata',
-        [+req.params.book],
-        { f: `${field}:${fields[field]}` }
-      );
-
-      if (result.indexOf('is not a known field') != -1)
-        throw `Invalid field "${field}"`;
+        if (result.indexOf('is not a known field') != -1)
+          throw `Invalid field "${field}"`;
+      }
     }
 
-    await calibre.run('calibredb embed_metadata', [+req.params.book]);
+    if (xyfir) {
+      for (let field in xyfir) {
+        await calibre.run(
+          'calibredb set_custom',
+          [`xy__${field}`, book, xyfir[field]]
+        );
+      }
+    }
+
+    await calibre.run('calibredb embed_metadata', [book]);
 
     res.json({ error: false });
   }
