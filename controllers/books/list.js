@@ -4,15 +4,19 @@ const {spawn} = require('child_process');
 /*
   GET libraries/:lib/books
   RETURN
-    { books: [{
-      last_modified: string, size: number, timestamp: number, comments: string,
-      author_sort: string, authors: string, cover: string, formats: string[],
-      tags: string[], title: string, pubdate: string, publisher: string,
-      id: number, rating: number, series: string, series_index: number,
-      identifiers: {
-        [type: string]: string|number
-      }
-    }]}
+    {
+      books: [{
+        last_modified: string, size: number, timestamp: number, comments: string,
+        author_sort: string, authors: string, cover: string, formats: string[],
+        tags: string[], title: string, pubdate: string, publisher: string,
+        id: number, rating: number, series: string, series_index: number,
+        identifiers: {
+          [type: string]: string|number
+        }
+        // custom `xy__` columns
+        last_read: number, percent: number, words: number
+      }]
+    }
   DESCRIPTION
     Return metadata / info for books in library
 */
@@ -25,7 +29,8 @@ module.exports = function(req, res) {
     '--fields',
       'author_sort,authors,cover,formats,id,rating,series,' +
       'series_index,tags,title,pubdate,publisher,last_modified,' +
-      'identifiers,size,timestamp,comments'
+      'identifiers,size,timestamp,comments,' +
+      '*xy__last_read,*xy__percent,*xy__words'
   ]);
 
   let output = '', sent = false;
@@ -41,7 +46,7 @@ module.exports = function(req, res) {
 
   calibre.on('close', code => {
     if (code == 0)
-      output = parseBookFields(output, { DEFAULTS: true });
+      output = parseBookFields(output, { DEFAULTS: true, XYFIR: true });
     else
       output = [];
 
