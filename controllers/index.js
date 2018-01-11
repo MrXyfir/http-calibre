@@ -30,6 +30,7 @@ router.route('/')
   .post(require('./library/create'))
   .delete(require('./library/delete'));
 router.post('/zip', require('./library/zip'));
+router.post('/upgrade', require('./library/upgrade'));
 
 /* Books */
 router.route('/books')
