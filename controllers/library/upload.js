@@ -1,5 +1,3 @@
-const resizeDisk = require('lib/resize-disk');
-const request = require('superagent');
 const sqlite = require('sqlite3');
 const unzip = require('extract-zip');
 const fs = require('fs-extra');
@@ -43,25 +41,12 @@ module.exports = async function(req, res) {
       });
     });
 
-    await new Promise((resolve, reject) => {
-      request
-        .post(config.urls.api + req._libId + '/library')
-        .send({ ids })
-        .end((err, result) => {
-          if (err || result.body.error)
-            reject('Could not add books to xyBooks');
-          else
-            resolve();
-        });
-    });
-
     res.json({ error: false });
 
     fs.emptyDir(req._path.ul, () => 1);
-    resizeDisk();
   }
   catch (err) {
     res.json({ error: true, message: err });
   }
-  
+
 };
