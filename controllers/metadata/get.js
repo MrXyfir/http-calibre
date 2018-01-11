@@ -1,31 +1,44 @@
+const parseBookFields = require('lib/parse-book-fields');
 const Calibre = require('node-calibre');
 
 /*
   GET libraries/:lib/books/:book/metadata
-  REQUIRED
-    author: string, title: string
-    OR
-    isbn: string
+  OPTIONAL
+    normal: string, xyfir: string
   RETURN
-    { error: boolean, message?: string, metadata?: string }
+    {
+      error: boolean, message?: string,
+      metadata?: {
+        [column: string]: any
+      }
+    }
   DESCRIPTION
-    Fetches an ebook's metadata
+    Returns requested metadata fields for a book
 */
 module.exports = async function(req, res) {
 
+  const {normal = '', xyfir = ''} = req.query;
   const calibre = new Calibre({ library: req._path.lib });
 
+  let fields = normal;
+
+  if (xyfir) {
+    if (fields) fields += ',';
+
+    fields += xyfir.split(',').map(f => `*xy__${f}`).join(',');
+  }
+
   try {
-    const result = await calibre.run(
-      'fetch-ebook-metadata', [],
-      req.query.isbn
-        ? { i: req.query.isbn }
-        : { a: req.query.author, t: req.query.title }
-    );
+    const result = await calibre.run('calibredb list', [], {
+      'for-machine': null,
+      'search': `id:${+req.params.book}`,
+      'fields': fields
+    });
 
-    if (result.indexOf('No results found') != -1) throw result;
-
-    res.json({ error: false, metadata: result });
+    res.json({
+      error: false,
+      metadata: parseBookFields(result, { XYFIR: true })
+    });
   }
   catch (err) {
     res.json({ error: true, message: err });
