@@ -1,3 +1,4 @@
+const parseBookFields = require('lib/parse-book-fields');
 const {spawn} = require('child_process');
 
 /*
@@ -39,40 +40,15 @@ module.exports = function(req, res) {
   });
 
   calibre.on('close', code => {
-    if (code == 0) {
-      const defaults = {
-        cover: String, rating: Number, series: String, publisher: String,
-        identifiers: Object, comments: String
-      };
-
-      output = JSON.parse(output)
-        // Add default values to fields that may not be returned by Calibre
-        .map(book => {
-          Object.keys(defaults).forEach(k =>
-            book[k] = book[k] || defaults[k]()
-          );
-
-          return book;
-        })
-        // Ensure books[i].cover|formats paths are only
-        // author_folder/book_folder/file and not full file paths
-        .map(book =>
-          Object.assign(book, {
-            cover:
-              book.cover.split('/').slice(-3).join('/'),
-            formats:
-              book.formats.map(format => format.split('/').slice(-3).join('/'))
-          })
-        );
-    }
-    else {
+    if (code == 0)
+      output = parseBookFields(output, { DEFAULTS: true });
+    else
       output = [];
-    }
 
     if (!sent) {
       res.json({ books: output });
       sent = true;
     }
   });
-  
+
 };
