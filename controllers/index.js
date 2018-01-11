@@ -42,10 +42,11 @@ router.put(
   uploadCover.single('cover'),
   require('./books/change-cover')
 );
-  
+
 router.route('/books/:book/metadata')
   .get(require('./metadata/get'))
   .put(require('./metadata/set'));
+router.get('/books/:book/metadata/fetch', require('./metadata/fetch'));
 
 router.post(
   '/books/:book/format',
