@@ -1,6 +1,13 @@
 const parseBookFields = require('lib/parse-book-fields');
 const {spawn} = require('child_process');
 
+const fields = [
+  'author_sort', 'authors', 'cover', 'formats', 'id', 'rating', 'series',
+  'series_index', 'tags', 'title', 'pubdate', 'publisher', 'last_modified',
+  'identifiers', 'size', 'timestamp', 'comments', '*xy__last_read',
+  '*xy__percent', '*xy__words'
+];
+
 /*
   GET libraries/:lib/books
   RETURN
@@ -26,11 +33,7 @@ module.exports = function(req, res) {
     'list',
     '--library-path', req._path.lib,
     '--for-machine',
-    '--fields',
-      'author_sort,authors,cover,formats,id,rating,series,' +
-      'series_index,tags,title,pubdate,publisher,last_modified,' +
-      'identifiers,size,timestamp,comments,' +
-      '*xy__last_read,*xy__percent,*xy__words'
+    '--fields', fields.join(',')
   ]);
 
   let output = '', sent = false;
@@ -46,7 +49,7 @@ module.exports = function(req, res) {
 
   calibre.on('close', code => {
     if (code == 0)
-      output = parseBookFields(output, { DEFAULTS: true, XYFIR: true });
+      output = parseBookFields(output, fields);
     else
       output = [];
 

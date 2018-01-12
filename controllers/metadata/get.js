@@ -37,7 +37,7 @@ module.exports = async function(req, res) {
 
     res.json({
       error: false,
-      metadata: parseBookFields(result, { XYFIR: true })
+      metadata: parseBookFields(result, fields.split(','))
     });
   }
   catch (err) {
