@@ -3,9 +3,9 @@ const {spawn} = require('child_process');
 
 const fields = [
   'author_sort', 'authors', 'cover', 'formats', 'id', 'rating', 'series',
-  'series_index', 'tags', 'title', 'pubdate', 'publisher', 'last_modified',
-  'identifiers', 'size', 'timestamp', 'comments', '*xy__last_read',
-  '*xy__percent', '*xy__words'
+  'series_index', 'tags', 'title', 'pubdate', 'publisher', 'identifiers',
+  'timestamp', 'comments', '*xy__last_read', '*xy__percent',
+  '*xy__words', '*xy__bookmarks', '*xy__notes'
 ];
 
 /*
