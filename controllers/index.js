@@ -32,29 +32,40 @@ router.route('/')
 router.post('/zip', require('./library/zip'));
 router.post('/upgrade', require('./library/upgrade'));
 
-/* Books */
+/* Library - Books */
 router.route('/books')
-  .get(require('./books/list'))
-  .post(uploadBooks.array('book', 20), require('./books/add'))
-  .delete(require('./books/remove'));
+  .get(require('./library/books/list'))
+  .post(uploadBooks.array('book', 20), require('./library/books/add'))
+  .delete(require('./library/books/remove'));
 
 router.put(
   '/books/:book/cover',
   uploadCover.single('cover'),
-  require('./books/change-cover')
+  require('./library/books/change-cover')
 );
 
+/* Library - Books - Metadata */
 router.route('/books/:book/metadata')
-  .get(require('./metadata/get'))
-  .put(require('./metadata/set'));
-router.get('/books/:book/metadata/fetch', require('./metadata/fetch'));
+  .get(require('./library/books/metadata/get'))
+  .put(require('./library/books/metadata/set'));
+router.get(
+  '/books/:book/metadata/fetch',
+  require('./library/books/metadata/fetch')
+);
 
+/* Library - Books - Format */
 router.post(
   '/books/:book/format',
   uploadBooks.single('book'),
-  require('./format/add')
+  require('./library/books/format/add')
 );
-router.delete('/books/:book/format/:format', require('./format/remove'));
-router.post('/books/:book/format/convert', require('./format/convert-to'));
+router.delete(
+  '/books/:book/format/:format',
+  require('./library/books/format/remove')
+);
+router.post(
+  '/books/:book/format/convert',
+  require('./library/books/format/convert-to')
+);
 
 module.exports = router;
