@@ -1,25 +1,22 @@
-const resizeDisk = require("lib/resize-disk");
-const fs = require("fs-extra");
+const fs = require('fs-extra');
 
 /*
-    DELETE libraries/:lib
-    RETURN
-        { error: boolean }
-    DESCRIPTION
-        Delete library and library's upload folder
+  DELETE libraries/:lib
+  RETURN
+    { error: boolean, message?: string }
+  DESCRIPTION
+    Delete library and library's upload folder
 */
-module.exports = function(req, res) {
-    
-    fs.remove(req._path.lib, err => {
-        if (err) {
-            res.json({ error: true });
-        }
-        else {
-            fs.remove(req._path.ul, err => {
-                res.json({ error: false });
-                resizeDisk();
-            });
-        }
-    });
-    
+module.exports = async function(req, res) {
+
+  try {
+    await fs.remove(req._path.lib);
+    await fs.remove(req._path.ul);
+
+    res.json({ error: false });
+  }
+  catch (err) {
+    res.json({ error: true, message: err });
+  }
+
 };
