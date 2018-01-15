@@ -29,10 +29,10 @@ module.exports = async function(req, res) {
   }
 
   try {
-    const result = await calibre.run('calibredb list', [], {
-      'for-machine': null,
-      'search': `id:${+req.params.book}`,
-      'fields': fields
+    const result = await calibre.run('calibredb list', {
+      forMachine: null,
+      search: `id:${+req.params.book}`,
+      fields: fields
     });
 
     res.json({

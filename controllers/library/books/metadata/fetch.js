@@ -17,7 +17,7 @@ module.exports = async function(req, res) {
 
   try {
     const result = await calibre.run(
-      'fetch-ebook-metadata', [],
+      'fetch-ebook-metadata',
       req.query.isbn
         ? { i: req.query.isbn }
         : { a: req.query.author, t: req.query.title }
