@@ -14,22 +14,18 @@ const config = require('config');
 */
 module.exports = async function(req, res) {
 
-  const { normal, xyfir } = req.body;
+  const {normal, xyfir} = req.body;
   const calibre = new Calibre({ library: req._path.lib });
   const book = +req.params.book;
 
   try {
     if (normal) {
-      for (let field in normal) {
-        const result = await calibre.run(
-          'calibredb set_metadata',
-          [book],
-          { f: `${field}:${normal[field]}` }
-        );
+      const result = await calibre.run(
+        'calibredb set_metadata', [book],
+        {f: Object.entries(normal).map(([f, v]) => `${f}:${v}`)}
+      );
 
-        if (result.indexOf('is not a known field') != -1)
-          throw `Invalid field "${field}"`;
-      }
+      if (result.indexOf('is not a known field') != -1) throw result;
     }
 
     if (xyfir) {
@@ -41,9 +37,9 @@ module.exports = async function(req, res) {
       }
     }
 
-    await calibre.run('calibredb embed_metadata', [book]);
-
     res.json({ error: false });
+
+    calibre.run('calibredb embed_metadata', [book]);
   }
   catch (err) {
     res.json({ error: true, message: err });
