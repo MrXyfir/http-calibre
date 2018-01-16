@@ -1,5 +1,6 @@
 const parseBookFields = require('lib/parse-book-fields');
 const {spawn} = require('child_process');
+const fs = require('fs-extra');
 
 const fields = [
   'author_sort', 'authors', 'cover', 'formats', 'id', 'rating', 'series',
@@ -27,7 +28,18 @@ const fields = [
   DESCRIPTION
     Return metadata / info for books in library
 */
-module.exports = function(req, res) {
+module.exports = async function(req, res) {
+
+  let exists = true;
+
+  try {
+    await fs.access(req._path.books);
+  }
+  catch (err) {
+    exists = false;
+  }
+
+  if (exists) return res.sendFile(req._path.books);
 
   const calibre = spawn('calibredb', [
     'list',
@@ -56,6 +68,8 @@ module.exports = function(req, res) {
     if (!sent) {
       res.json({ books: output });
       sent = true;
+
+      fs.writeFile(req._path.books, JSON.stringify(output));
     }
   });
 
