@@ -18,11 +18,12 @@ app.use(['/files/:lib', '/libraries/:lib'], (req, res, next) => {
   }
   else {
     req._path = {
-      lib: config.directories.libraries + '/' + req.params.lib,
-      ul: config.directories.uploads + '/' + req.params.lib
+      lib: `${config.directories.libraries}/${req.params.lib}`,
+      ul: `${config.directories.uploads}/${req.params.lib}`
     },
+    req._path.books = `${req._path.lib}/books.json`,
     req._libId = req.params.lib;
-    
+
     next();
   }
 });
