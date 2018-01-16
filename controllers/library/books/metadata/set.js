@@ -1,6 +1,7 @@
 const Calibre = require('node-calibre');
 const request = require('superagent');
 const config = require('config');
+const fs = require('fs-extra');
 
 /*
   PUT libraries/:lib/books/:book/metadata
@@ -40,6 +41,7 @@ module.exports = async function(req, res) {
     res.json({ error: false });
 
     calibre.run('calibredb embed_metadata', [book]);
+    fs.unlink(req._path.books, () => 1);
   }
   catch (err) {
     res.json({ error: true, message: err });

@@ -8,7 +8,7 @@ const fs = require('fs-extra');
   DESCRIPTION
     Add new format of :book
 */
-module.exports = async function(req, res) { 
+module.exports = async function(req, res) {
 
   const calibre = new Calibre({ library: req._path.lib });
 
@@ -20,7 +20,9 @@ module.exports = async function(req, res) {
     if (result.indexOf('Error') != -1) throw result;
 
     res.json({ error: false });
-    fs.emptyDir(req._path.ul);
+
+    fs.emptyDir(req._path.ul, () => 1);
+    fs.unlink(req._path.books, () => 1);
   }
   catch (err) {
     res.json({ error: true, message: err });

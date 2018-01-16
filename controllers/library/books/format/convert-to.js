@@ -74,6 +74,8 @@ module.exports = function(req, res) {
             throw 'Could not add format to library';
 
           res.json({ error: false });
+
+          fs.unlink(req._path.books, () => 1);
         })
         .catch(err => {
           res.json({ error: true, message: err });
