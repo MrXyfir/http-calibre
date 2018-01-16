@@ -69,7 +69,8 @@ module.exports = async function(req, res) {
       res.json({ books: output });
       sent = true;
 
-      fs.writeFile(req._path.books, JSON.stringify(output));
+      if (output.length)
+        fs.writeFile(req._path.books, JSON.stringify(output));
     }
   });
 
