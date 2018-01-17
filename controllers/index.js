@@ -52,6 +52,10 @@ router.get(
   '/books/:book/metadata/fetch',
   require('./library/books/metadata/fetch')
 );
+router.post(
+  '/books/:book/metadata/embed',
+  require('./library/books/metadata/embed')
+);
 
 /* Library - Books - Format */
 router.post(
