@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="uuid_id" version="2.0">
+    <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">
+        <dc:identifier opf:scheme="calibre" id="calibre_id">3</dc:identifier>
+        <dc:identifier opf:scheme="uuid" id="uuid_id">faf0f5c7-0bae-46a4-8889-45ada45f743f</dc:identifier>
+        <dc:title>Frankenstein; Or, The Modern Prometheus</dc:title>
+        <dc:creator opf:file-as="Shelley, Mary Wollstonecraft" opf:role="aut">Mary Wollstonecraft Shelley</dc:creator>
+        <dc:contributor opf:file-as="calibre" opf:role="bkp">calibre (3.13.0) [https://calibre-ebook.com]</dc:contributor>
+        <dc:date>1993-10-01T08:00:00+00:00</dc:date>
+        <dc:identifier opf:scheme="URI">http://www.gutenberg.org/ebooks/84</dc:identifier>
+        <dc:language>eng</dc:language>
+        <dc:subject>Science fiction</dc:subject>
+        <dc:subject>Horror tales</dc:subject>
+        <dc:subject>Gothic fiction (Literary genre)</dc:subject>
+        <dc:subject>Scientists -- Fiction</dc:subject>
+        <dc:subject>Monsters -- Fiction</dc:subject>
+        <dc:subject>Frankenstein</dc:subject>
+        <dc:subject>Victor (Fictitious character) -- Fiction</dc:subject>
+        <dc:subject>Frankenstein's monster (Fictitious character) -- Fiction</dc:subject>
+        <meta content="{&quot;Mary Wollstonecraft Shelley&quot;: &quot;&quot;}" name="calibre:author_link_map"/>
+        <meta content="2018-01-17T19:38:17.351266+00:00" name="calibre:timestamp"/>
+        <meta content="Frankenstein; Or, The Modern Prometheus" name="calibre:title_sort"/>
+        <meta name="calibre:user_metadata:#xy__bookmarks" content="{&quot;kind&quot;: &quot;field&quot;, &quot;is_csp&quot;: false, &quot;is_multiple&quot;: null, &quot;link_column&quot;: &quot;value&quot;, &quot;is_editable&quot;: true, &quot;#value#&quot;: null, &quot;display&quot;: {}, &quot;is_category&quot;: true, &quot;label&quot;: &quot;xy__bookmarks&quot;, &quot;datatype&quot;: &quot;text&quot;, &quot;is_custom&quot;: true, &quot;name&quot;: &quot;Bookmarks&quot;, &quot;column&quot;: &quot;value&quot;, &quot;rec_index&quot;: 22, &quot;#extra#&quot;: null, &quot;search_terms&quot;: [&quot;#xy__bookmarks&quot;], &quot;is_multiple2&quot;: {}, &quot;category_sort&quot;: &quot;value&quot;, &quot;colnum&quot;: 4, &quot;table&quot;: &quot;custom_column_4&quot;}"/>
+        <meta name="calibre:user_metadata:#xy__notes" content="{&quot;kind&quot;: &quot;field&quot;, &quot;is_csp&quot;: false, &quot;is_multiple&quot;: null, &quot;link_column&quot;: &quot;value&quot;, &quot;is_editable&quot;: true, &quot;#value#&quot;: null, &quot;display&quot;: {}, &quot;is_category&quot;: true, &quot;label&quot;: &quot;xy__notes&quot;, &quot;datatype&quot;: &quot;text&quot;, &quot;is_custom&quot;: true, &quot;name&quot;: &quot;Notes&quot;, &quot;column&quot;: &quot;value&quot;, &quot;rec_index&quot;: 24, &quot;#extra#&quot;: null, &quot;search_terms&quot;: [&quot;#xy__notes&quot;], &quot;is_multiple2&quot;: {}, &quot;category_sort&quot;: &quot;value&quot;, &quot;colnum&quot;: 1, &quot;table&quot;: &quot;custom_column_1&quot;}"/>
+        <meta name="calibre:user_metadata:#xy__percent" content="{&quot;kind&quot;: &quot;field&quot;, &quot;is_csp&quot;: false, &quot;is_multiple&quot;: null, &quot;link_column&quot;: &quot;value&quot;, &quot;is_editable&quot;: true, &quot;#value#&quot;: null, &quot;display&quot;: {}, &quot;is_category&quot;: false, &quot;label&quot;: &quot;xy__percent&quot;, &quot;datatype&quot;: &quot;int&quot;, &quot;is_custom&quot;: true, &quot;name&quot;: &quot;Percent Complete&quot;, &quot;column&quot;: &quot;value&quot;, &quot;rec_index&quot;: 25, &quot;#extra#&quot;: null, &quot;search_terms&quot;: [&quot;#xy__percent&quot;], &quot;is_multiple2&quot;: {}, &quot;category_sort&quot;: &quot;value&quot;, &quot;colnum&quot;: 3, &quot;table&quot;: &quot;custom_column_3&quot;}"/>
+        <meta name="calibre:user_metadata:#xy__words" content="{&quot;kind&quot;: &quot;field&quot;, &quot;is_csp&quot;: false, &quot;is_multiple&quot;: null, &quot;link_column&quot;: &quot;value&quot;, &quot;is_editable&quot;: true, &quot;#value#&quot;: null, &quot;display&quot;: {}, &quot;is_category&quot;: false, &quot;label&quot;: &quot;xy__words&quot;, &quot;datatype&quot;: &quot;int&quot;, &quot;is_custom&quot;: true, &quot;name&quot;: &quot;Word Count&quot;, &quot;column&quot;: &quot;value&quot;, &quot;rec_index&quot;: 26, &quot;#extra#&quot;: null, &quot;search_terms&quot;: [&quot;#xy__words&quot;], &quot;is_multiple2&quot;: {}, &quot;category_sort&quot;: &quot;value&quot;, &quot;colnum&quot;: 2, &quot;table&quot;: &quot;custom_column_2&quot;}"/>
+        <meta name="calibre:user_metadata:#xy__last_read" content="{&quot;kind&quot;: &quot;field&quot;, &quot;is_csp&quot;: false, &quot;is_multiple&quot;: null, &quot;link_column&quot;: &quot;value&quot;, &quot;is_editable&quot;: true, &quot;#value#&quot;: null, &quot;display&quot;: {}, &quot;is_category&quot;: false, &quot;label&quot;: &quot;xy__last_read&quot;, &quot;datatype&quot;: &quot;int&quot;, &quot;is_custom&quot;: true, &quot;name&quot;: &quot;Last Read&quot;, &quot;column&quot;: &quot;value&quot;, &quot;rec_index&quot;: 23, &quot;#extra#&quot;: null, &quot;search_terms&quot;: [&quot;#xy__last_read&quot;], &quot;is_multiple2&quot;: {}, &quot;category_sort&quot;: &quot;value&quot;, &quot;colnum&quot;: 5, &quot;table&quot;: &quot;custom_column_5&quot;}"/>
+    </metadata>
+    <guide>
+        <reference href="cover.jpg" title="Cover" type="cover"/>
+    </guide>
+</package>
