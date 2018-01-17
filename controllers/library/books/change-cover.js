@@ -32,9 +32,6 @@ module.exports = async function(req, res) {
     // Move newly uploaded cover file to replace current cover file
     await fs.rename(req.file.path, `${req._path.lib}/${row.path}/cover.jpg`);
 
-    // Embed metadata for book
-    await calibre.run('calibredb embed_metadata', [+req.params.book]);
-
     res.json({ error: false });
   }
   catch (err) {
