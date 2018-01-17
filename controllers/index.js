@@ -6,10 +6,8 @@ const storage = multer.diskStorage({
     cb(null, req._path.ul)
   },
   filename: function(req, file, cb) {
-    const filename = Date.now().toString()
-      + '.' + file.originalname.split('.').slice(-1);
-
-    cb(null, filename);
+    const fname = `${Date.now()}.${file.originalname.split('.').slice(-1)}`;
+    cb(null, fname);
   }
 })
 
@@ -30,6 +28,7 @@ router.route('/')
   .post(require('./library/create'))
   .delete(require('./library/delete'));
 router.post('/zip', require('./library/zip'));
+router.post('/sample', require('./library/sample'));
 router.post('/upgrade', require('./library/upgrade'));
 
 /* Library - Books */
