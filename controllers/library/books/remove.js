@@ -1,4 +1,5 @@
 const Calibre = require('node-calibre');
+const fs = require('fs-extra');
 
 /*
   DELETE libraries/:lib/books
@@ -20,6 +21,8 @@ module.exports = async function(req, res) {
     await calibre.run('calibredb remove', [req.body.books]);
 
     res.json({ error: false });
+
+    fs.unlink(req._path.books, () => 1);
   }
   catch (err) {
     res.json({ error: true, message: err });
