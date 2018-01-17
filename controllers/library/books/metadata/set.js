@@ -40,8 +40,34 @@ module.exports = async function(req, res) {
 
     res.json({ error: false });
 
-    calibre.run('calibredb embed_metadata', [book]);
-    fs.unlink(req._path.books, () => 1);
+    // Update library's books.json if only last_read and percent fields are
+    // being updated (closing book), otherwise just delete books.json
+    // ** Eventually this should support all fields
+    if (
+      !normal &&
+      Object.keys(xyfir || {}).length == 2 &&
+      xyfir.last_read !== undefined &&
+      xyfir.percent !== undefined
+    ) {
+      try {
+        let books = await fs.readFile(req._path.books, 'utf8');
+        books = JSON.parse(books);
+
+        const index = books.findIndex(b => b.id == book);
+
+        books[index].last_read = xyfir.last_read,
+        books[index].percent = xyfir.percent;
+
+        await fs.writeFile(req._path.books, JSON.stringify(books));
+      }
+      catch (err) {
+        // File probably doesn't exist
+        console.error('oops', err);
+      }
+    }
+    else {
+      fs.unlink(req._path.books, () => 1);
+    }
   }
   catch (err) {
     res.json({ error: true, message: err });
