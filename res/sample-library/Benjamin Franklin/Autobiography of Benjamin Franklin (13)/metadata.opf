@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="uuid_id" version="2.0">
+    <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">
+        <dc:identifier opf:scheme="calibre" id="calibre_id">13</dc:identifier>
+        <dc:identifier opf:scheme="uuid" id="uuid_id">a657b374-b0c9-473c-9171-9e799d5a7e6f</dc:identifier>
+        <dc:title>Autobiography of Benjamin Franklin</dc:title>
+        <dc:creator opf:file-as="Franklin, Benjamin" opf:role="aut">Benjamin Franklin</dc:creator>
+        <dc:contributor opf:file-as="calibre" opf:role="bkp">calibre (3.13.0) [https://calibre-ebook.com]</dc:contributor>
+        <dc:date>2006-12-28T08:00:00+00:00</dc:date>
+        <dc:identifier opf:scheme="URI">http://www.gutenberg.org/ebooks/20203</dc:identifier>
+        <dc:language>eng</dc:language>
+        <dc:subject>Franklin</dc:subject>
+        <dc:subject>Benjamin</dc:subject>
+        <dc:subject>1706-1790</dc:subject>
+        <dc:subject>Statesmen -- United States -- Biography</dc:subject>
+        <meta content="{&quot;Benjamin Franklin&quot;: &quot;&quot;}" name="calibre:author_link_map"/>
+        <meta content="2018-02-01T03:06:17.205328+00:00" name="calibre:timestamp"/>
+        <meta content="Autobiography of Benjamin Franklin" name="calibre:title_sort"/>
+        <meta name="calibre:user_metadata:#xy__last_read" content="{&quot;#value#&quot;: null, &quot;label&quot;: &quot;xy__last_read&quot;, &quot;colnum&quot;: 5, &quot;name&quot;: &quot;Last Read&quot;, &quot;datatype&quot;: &quot;int&quot;, &quot;#extra#&quot;: null, &quot;column&quot;: &quot;value&quot;, &quot;is_csp&quot;: false, &quot;category_sort&quot;: &quot;value&quot;, &quot;rec_index&quot;: 23, &quot;is_custom&quot;: true, &quot;kind&quot;: &quot;field&quot;, &quot;is_category&quot;: false, &quot;display&quot;: {}, &quot;is_editable&quot;: true, &quot;search_terms&quot;: [&quot;#xy__last_read&quot;], &quot;is_multiple&quot;: null, &quot;is_multiple2&quot;: {}, &quot;table&quot;: &quot;custom_column_5&quot;, &quot;link_column&quot;: &quot;value&quot;}"/>
+        <meta name="calibre:user_metadata:#xy__bookmarks" content="{&quot;#value#&quot;: null, &quot;label&quot;: &quot;xy__bookmarks&quot;, &quot;colnum&quot;: 4, &quot;name&quot;: &quot;Bookmarks&quot;, &quot;datatype&quot;: &quot;text&quot;, &quot;#extra#&quot;: null, &quot;column&quot;: &quot;value&quot;, &quot;is_csp&quot;: false, &quot;category_sort&quot;: &quot;value&quot;, &quot;rec_index&quot;: 22, &quot;is_custom&quot;: true, &quot;kind&quot;: &quot;field&quot;, &quot;is_category&quot;: true, &quot;display&quot;: {}, &quot;is_editable&quot;: true, &quot;search_terms&quot;: [&quot;#xy__bookmarks&quot;], &quot;is_multiple&quot;: null, &quot;is_multiple2&quot;: {}, &quot;table&quot;: &quot;custom_column_4&quot;, &quot;link_column&quot;: &quot;value&quot;}"/>
+        <meta name="calibre:user_metadata:#xy__percent" content="{&quot;#value#&quot;: null, &quot;label&quot;: &quot;xy__percent&quot;, &quot;colnum&quot;: 3, &quot;name&quot;: &quot;Percent Complete&quot;, &quot;datatype&quot;: &quot;int&quot;, &quot;#extra#&quot;: null, &quot;column&quot;: &quot;value&quot;, &quot;is_csp&quot;: false, &quot;category_sort&quot;: &quot;value&quot;, &quot;rec_index&quot;: 25, &quot;is_custom&quot;: true, &quot;kind&quot;: &quot;field&quot;, &quot;is_category&quot;: false, &quot;display&quot;: {}, &quot;is_editable&quot;: true, &quot;search_terms&quot;: [&quot;#xy__percent&quot;], &quot;is_multiple&quot;: null, &quot;is_multiple2&quot;: {}, &quot;table&quot;: &quot;custom_column_3&quot;, &quot;link_column&quot;: &quot;value&quot;}"/>
+        <meta name="calibre:user_metadata:#xy__notes" content="{&quot;#value#&quot;: null, &quot;label&quot;: &quot;xy__notes&quot;, &quot;colnum&quot;: 1, &quot;name&quot;: &quot;Notes&quot;, &quot;datatype&quot;: &quot;text&quot;, &quot;#extra#&quot;: null, &quot;column&quot;: &quot;value&quot;, &quot;is_csp&quot;: false, &quot;category_sort&quot;: &quot;value&quot;, &quot;rec_index&quot;: 24, &quot;is_custom&quot;: true, &quot;kind&quot;: &quot;field&quot;, &quot;is_category&quot;: true, &quot;display&quot;: {}, &quot;is_editable&quot;: true, &quot;search_terms&quot;: [&quot;#xy__notes&quot;], &quot;is_multiple&quot;: null, &quot;is_multiple2&quot;: {}, &quot;table&quot;: &quot;custom_column_1&quot;, &quot;link_column&quot;: &quot;value&quot;}"/>
+        <meta name="calibre:user_metadata:#xy__words" content="{&quot;#value#&quot;: null, &quot;label&quot;: &quot;xy__words&quot;, &quot;colnum&quot;: 2, &quot;name&quot;: &quot;Word Count&quot;, &quot;datatype&quot;: &quot;int&quot;, &quot;#extra#&quot;: null, &quot;column&quot;: &quot;value&quot;, &quot;is_csp&quot;: false, &quot;category_sort&quot;: &quot;value&quot;, &quot;rec_index&quot;: 26, &quot;is_custom&quot;: true, &quot;kind&quot;: &quot;field&quot;, &quot;is_category&quot;: false, &quot;display&quot;: {}, &quot;is_editable&quot;: true, &quot;search_terms&quot;: [&quot;#xy__words&quot;], &quot;is_multiple&quot;: null, &quot;is_multiple2&quot;: {}, &quot;table&quot;: &quot;custom_column_2&quot;, &quot;link_column&quot;: &quot;value&quot;}"/>
+    </metadata>
+    <guide>
+        <reference href="cover.jpg" title="Cover" type="cover"/>
+    </guide>
+</package>

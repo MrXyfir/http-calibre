@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="uuid_id" version="2.0">
+    <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">
+        <dc:identifier opf:scheme="calibre" id="calibre_id">12</dc:identifier>
+        <dc:identifier opf:scheme="uuid" id="uuid_id">effc4fae-e426-4376-9039-fcd6e1329473</dc:identifier>
+        <dc:title>The Count of Monte Cristo, Illustrated</dc:title>
+        <dc:creator opf:file-as="Dumas, Alexandre" opf:role="aut">Alexandre Dumas</dc:creator>
+        <dc:contributor opf:file-as="calibre" opf:role="bkp">calibre (3.13.0) [https://calibre-ebook.com]</dc:contributor>
+        <dc:date>1998-01-01T08:00:00+00:00</dc:date>
+        <dc:identifier opf:scheme="URI">http://www.gutenberg.org/ebooks/1184</dc:identifier>
+        <dc:language>eng</dc:language>
+        <dc:subject>Historical fiction</dc:subject>
+        <dc:subject>Revenge -- Fiction</dc:subject>
+        <dc:subject>Adventure stories</dc:subject>
+        <dc:subject>Prisoners -- Fiction</dc:subject>
+        <dc:subject>France -- History -- 19th century -- Fiction</dc:subject>
+        <dc:subject>Pirates -- Fiction</dc:subject>
+        <dc:subject>Dantès</dc:subject>
+        <dc:subject>Edmond (Fictitious character) -- Fiction</dc:subject>
+        <meta content="{&quot;Alexandre Dumas&quot;: &quot;&quot;}" name="calibre:author_link_map"/>
+        <meta content="2018-02-01T03:06:09.378465+00:00" name="calibre:timestamp"/>
+        <meta content="Count of Monte Cristo, Illustrated, The" name="calibre:title_sort"/>
+        <meta name="calibre:user_metadata:#xy__bookmarks" content="{&quot;kind&quot;: &quot;field&quot;, &quot;display&quot;: {}, &quot;column&quot;: &quot;value&quot;, &quot;label&quot;: &quot;xy__bookmarks&quot;, &quot;is_multiple2&quot;: {}, &quot;category_sort&quot;: &quot;value&quot;, &quot;is_csp&quot;: false, &quot;table&quot;: &quot;custom_column_4&quot;, &quot;colnum&quot;: 4, &quot;name&quot;: &quot;Bookmarks&quot;, &quot;#value#&quot;: null, &quot;search_terms&quot;: [&quot;#xy__bookmarks&quot;], &quot;is_editable&quot;: true, &quot;datatype&quot;: &quot;text&quot;, &quot;is_multiple&quot;: null, &quot;is_custom&quot;: true, &quot;is_category&quot;: true, &quot;link_column&quot;: &quot;value&quot;, &quot;rec_index&quot;: 22, &quot;#extra#&quot;: null}"/>
+        <meta name="calibre:user_metadata:#xy__percent" content="{&quot;kind&quot;: &quot;field&quot;, &quot;display&quot;: {}, &quot;column&quot;: &quot;value&quot;, &quot;label&quot;: &quot;xy__percent&quot;, &quot;is_multiple2&quot;: {}, &quot;category_sort&quot;: &quot;value&quot;, &quot;is_csp&quot;: false, &quot;table&quot;: &quot;custom_column_3&quot;, &quot;colnum&quot;: 3, &quot;name&quot;: &quot;Percent Complete&quot;, &quot;#value#&quot;: null, &quot;search_terms&quot;: [&quot;#xy__percent&quot;], &quot;is_editable&quot;: true, &quot;datatype&quot;: &quot;int&quot;, &quot;is_multiple&quot;: null, &quot;is_custom&quot;: true, &quot;is_category&quot;: false, &quot;link_column&quot;: &quot;value&quot;, &quot;rec_index&quot;: 25, &quot;#extra#&quot;: null}"/>
+        <meta name="calibre:user_metadata:#xy__words" content="{&quot;kind&quot;: &quot;field&quot;, &quot;display&quot;: {}, &quot;column&quot;: &quot;value&quot;, &quot;label&quot;: &quot;xy__words&quot;, &quot;is_multiple2&quot;: {}, &quot;category_sort&quot;: &quot;value&quot;, &quot;is_csp&quot;: false, &quot;table&quot;: &quot;custom_column_2&quot;, &quot;colnum&quot;: 2, &quot;name&quot;: &quot;Word Count&quot;, &quot;#value#&quot;: null, &quot;search_terms&quot;: [&quot;#xy__words&quot;], &quot;is_editable&quot;: true, &quot;datatype&quot;: &quot;int&quot;, &quot;is_multiple&quot;: null, &quot;is_custom&quot;: true, &quot;is_category&quot;: false, &quot;link_column&quot;: &quot;value&quot;, &quot;rec_index&quot;: 26, &quot;#extra#&quot;: null}"/>
+        <meta name="calibre:user_metadata:#xy__last_read" content="{&quot;kind&quot;: &quot;field&quot;, &quot;display&quot;: {}, &quot;column&quot;: &quot;value&quot;, &quot;label&quot;: &quot;xy__last_read&quot;, &quot;is_multiple2&quot;: {}, &quot;category_sort&quot;: &quot;value&quot;, &quot;is_csp&quot;: false, &quot;table&quot;: &quot;custom_column_5&quot;, &quot;colnum&quot;: 5, &quot;name&quot;: &quot;Last Read&quot;, &quot;#value#&quot;: null, &quot;search_terms&quot;: [&quot;#xy__last_read&quot;], &quot;is_editable&quot;: true, &quot;datatype&quot;: &quot;int&quot;, &quot;is_multiple&quot;: null, &quot;is_custom&quot;: true, &quot;is_category&quot;: false, &quot;link_column&quot;: &quot;value&quot;, &quot;rec_index&quot;: 23, &quot;#extra#&quot;: null}"/>
+        <meta name="calibre:user_metadata:#xy__notes" content="{&quot;kind&quot;: &quot;field&quot;, &quot;display&quot;: {}, &quot;column&quot;: &quot;value&quot;, &quot;label&quot;: &quot;xy__notes&quot;, &quot;is_multiple2&quot;: {}, &quot;category_sort&quot;: &quot;value&quot;, &quot;is_csp&quot;: false, &quot;table&quot;: &quot;custom_column_1&quot;, &quot;colnum&quot;: 1, &quot;name&quot;: &quot;Notes&quot;, &quot;#value#&quot;: null, &quot;search_terms&quot;: [&quot;#xy__notes&quot;], &quot;is_editable&quot;: true, &quot;datatype&quot;: &quot;text&quot;, &quot;is_multiple&quot;: null, &quot;is_custom&quot;: true, &quot;is_category&quot;: true, &quot;link_column&quot;: &quot;value&quot;, &quot;rec_index&quot;: 24, &quot;#extra#&quot;: null}"/>
+    </metadata>
+    <guide>
+        <reference href="cover.jpg" title="Cover" type="cover"/>
+    </guide>
+</package>

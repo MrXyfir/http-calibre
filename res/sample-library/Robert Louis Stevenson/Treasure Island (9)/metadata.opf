@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="uuid_id" version="2.0">
+    <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">
+        <dc:identifier opf:scheme="calibre" id="calibre_id">9</dc:identifier>
+        <dc:identifier opf:scheme="uuid" id="uuid_id">d375427d-3a51-440d-baef-744f1f081499</dc:identifier>
+        <dc:title>Treasure Island</dc:title>
+        <dc:creator opf:file-as="Stevenson, Robert Louis" opf:role="aut">Robert Louis Stevenson</dc:creator>
+        <dc:contributor opf:file-as="calibre" opf:role="bkp">calibre (3.13.0) [https://calibre-ebook.com]</dc:contributor>
+        <dc:date>2006-02-26T08:00:00+00:00</dc:date>
+        <dc:identifier opf:scheme="URI">http://www.gutenberg.org/ebooks/120</dc:identifier>
+        <dc:language>eng</dc:language>
+        <dc:subject>Sea stories</dc:subject>
+        <dc:subject>Pirates -- Fiction</dc:subject>
+        <dc:subject>Treasure troves -- Fiction</dc:subject>
+        <dc:subject>Treasure Island (Imaginary place) -- Fiction</dc:subject>
+        <meta content="{&quot;Robert Louis Stevenson&quot;: &quot;&quot;}" name="calibre:author_link_map"/>
+        <meta content="2018-02-01T03:05:46.876484+00:00" name="calibre:timestamp"/>
+        <meta content="Treasure Island" name="calibre:title_sort"/>
+        <meta name="calibre:user_metadata:#xy__last_read" content="{&quot;#value#&quot;: null, &quot;is_custom&quot;: true, &quot;is_category&quot;: false, &quot;table&quot;: &quot;custom_column_5&quot;, &quot;colnum&quot;: 5, &quot;datatype&quot;: &quot;int&quot;, &quot;link_column&quot;: &quot;value&quot;, &quot;label&quot;: &quot;xy__last_read&quot;, &quot;kind&quot;: &quot;field&quot;, &quot;is_multiple&quot;: null, &quot;#extra#&quot;: null, &quot;category_sort&quot;: &quot;value&quot;, &quot;is_multiple2&quot;: {}, &quot;search_terms&quot;: [&quot;#xy__last_read&quot;], &quot;display&quot;: {}, &quot;rec_index&quot;: 23, &quot;column&quot;: &quot;value&quot;, &quot;name&quot;: &quot;Last Read&quot;, &quot;is_editable&quot;: true, &quot;is_csp&quot;: false}"/>
+        <meta name="calibre:user_metadata:#xy__percent" content="{&quot;#value#&quot;: null, &quot;is_custom&quot;: true, &quot;is_category&quot;: false, &quot;table&quot;: &quot;custom_column_3&quot;, &quot;colnum&quot;: 3, &quot;datatype&quot;: &quot;int&quot;, &quot;link_column&quot;: &quot;value&quot;, &quot;label&quot;: &quot;xy__percent&quot;, &quot;kind&quot;: &quot;field&quot;, &quot;is_multiple&quot;: null, &quot;#extra#&quot;: null, &quot;category_sort&quot;: &quot;value&quot;, &quot;is_multiple2&quot;: {}, &quot;search_terms&quot;: [&quot;#xy__percent&quot;], &quot;display&quot;: {}, &quot;rec_index&quot;: 25, &quot;column&quot;: &quot;value&quot;, &quot;name&quot;: &quot;Percent Complete&quot;, &quot;is_editable&quot;: true, &quot;is_csp&quot;: false}"/>
+        <meta name="calibre:user_metadata:#xy__bookmarks" content="{&quot;#value#&quot;: null, &quot;is_custom&quot;: true, &quot;is_category&quot;: true, &quot;table&quot;: &quot;custom_column_4&quot;, &quot;colnum&quot;: 4, &quot;datatype&quot;: &quot;text&quot;, &quot;link_column&quot;: &quot;value&quot;, &quot;label&quot;: &quot;xy__bookmarks&quot;, &quot;kind&quot;: &quot;field&quot;, &quot;is_multiple&quot;: null, &quot;#extra#&quot;: null, &quot;category_sort&quot;: &quot;value&quot;, &quot;is_multiple2&quot;: {}, &quot;search_terms&quot;: [&quot;#xy__bookmarks&quot;], &quot;display&quot;: {}, &quot;rec_index&quot;: 22, &quot;column&quot;: &quot;value&quot;, &quot;name&quot;: &quot;Bookmarks&quot;, &quot;is_editable&quot;: true, &quot;is_csp&quot;: false}"/>
+        <meta name="calibre:user_metadata:#xy__notes" content="{&quot;#value#&quot;: null, &quot;is_custom&quot;: true, &quot;is_category&quot;: true, &quot;table&quot;: &quot;custom_column_1&quot;, &quot;colnum&quot;: 1, &quot;datatype&quot;: &quot;text&quot;, &quot;link_column&quot;: &quot;value&quot;, &quot;label&quot;: &quot;xy__notes&quot;, &quot;kind&quot;: &quot;field&quot;, &quot;is_multiple&quot;: null, &quot;#extra#&quot;: null, &quot;category_sort&quot;: &quot;value&quot;, &quot;is_multiple2&quot;: {}, &quot;search_terms&quot;: [&quot;#xy__notes&quot;], &quot;display&quot;: {}, &quot;rec_index&quot;: 24, &quot;column&quot;: &quot;value&quot;, &quot;name&quot;: &quot;Notes&quot;, &quot;is_editable&quot;: true, &quot;is_csp&quot;: false}"/>
+        <meta name="calibre:user_metadata:#xy__words" content="{&quot;#value#&quot;: null, &quot;is_custom&quot;: true, &quot;is_category&quot;: false, &quot;table&quot;: &quot;custom_column_2&quot;, &quot;colnum&quot;: 2, &quot;datatype&quot;: &quot;int&quot;, &quot;link_column&quot;: &quot;value&quot;, &quot;label&quot;: &quot;xy__words&quot;, &quot;kind&quot;: &quot;field&quot;, &quot;is_multiple&quot;: null, &quot;#extra#&quot;: null, &quot;category_sort&quot;: &quot;value&quot;, &quot;is_multiple2&quot;: {}, &quot;search_terms&quot;: [&quot;#xy__words&quot;], &quot;display&quot;: {}, &quot;rec_index&quot;: 26, &quot;column&quot;: &quot;value&quot;, &quot;name&quot;: &quot;Word Count&quot;, &quot;is_editable&quot;: true, &quot;is_csp&quot;: false}"/>
+    </metadata>
+    <guide>
+        <reference href="cover.jpg" title="Cover" type="cover"/>
+    </guide>
+</package>
