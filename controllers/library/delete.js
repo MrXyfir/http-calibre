@@ -5,13 +5,14 @@ const fs = require('fs-extra');
   RETURN
     { error: boolean, message?: string }
   DESCRIPTION
-    Delete library and library's upload folder
+    Wipe library and library's upload folder
+    Does not actually delete the directories
 */
 module.exports = async function(req, res) {
 
   try {
-    await fs.remove(req._path.lib);
-    await fs.remove(req._path.ul);
+    await fs.emptyDir(req._path.lib);
+    await fs.emptyDir(req._path.ul);
 
     res.json({ error: false });
   }
