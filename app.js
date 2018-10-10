@@ -26,6 +26,4 @@ app.use(['/files/:lib', '/libraries/:lib'], (req, res, next) => {
 app.use('/files/:lib', require('./controllers/files/'));
 app.use('/libraries/:lib', require('./controllers/'));
 
-app.listen(config.environment.port, () =>
-  console.log('~~Server running on port', config.environment.port)
-);
+app.listen(config.port, () => console.log('Listening on', config.port));
