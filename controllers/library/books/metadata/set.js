@@ -1,6 +1,4 @@
 const Calibre = require('node-calibre');
-const request = require('superagent');
-const config = require('config');
 const fs = require('fs-extra');
 
 /*
@@ -14,27 +12,26 @@ const fs = require('fs-extra');
     Sets fields in a book's metadata
 */
 module.exports = async function(req, res) {
-
-  const {normal, xyfir} = req.body;
+  const { normal, xyfir } = req.body;
   const calibre = new Calibre({ library: req._path.lib });
   const book = +req.params.book;
 
   try {
     if (normal) {
-      const result = await calibre.run(
-        'calibredb set_metadata', [book],
-        {f: Object.entries(normal).map(([f, v]) => `${f}:${v}`)}
-      );
+      const result = await calibre.run('calibredb set_metadata', [book], {
+        f: Object.entries(normal).map(([f, v]) => `${f}:${v}`)
+      });
 
       if (result.indexOf('is not a known field') != -1) throw result;
     }
 
     if (xyfir) {
       for (let field in xyfir) {
-        await calibre.run(
-          'calibredb set_custom',
-          [`xy__${field}`, book, xyfir[field]]
-        );
+        await calibre.run('calibredb set_custom', [
+          `xy__${field}`,
+          book,
+          xyfir[field]
+        ]);
       }
     }
 
@@ -55,22 +52,18 @@ module.exports = async function(req, res) {
 
         const index = books.findIndex(b => b.id == book);
 
-        books[index].last_read = xyfir.last_read,
-        books[index].percent = xyfir.percent;
+        (books[index].last_read = xyfir.last_read),
+          (books[index].percent = xyfir.percent);
 
         await fs.writeFile(req._path.books, JSON.stringify(books));
-      }
-      catch (err) {
+      } catch (err) {
         // File probably doesn't exist
         console.error('oops', err);
       }
-    }
-    else {
+    } else {
       fs.unlink(req._path.books, () => 1);
     }
-  }
-  catch (err) {
+  } catch (err) {
     res.json({ error: true, message: err });
   }
-
-}
+};

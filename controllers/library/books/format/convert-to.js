@@ -1,5 +1,4 @@
 const Calibre = require('node-calibre');
-const request = require('superagent');
 const sqlite = require('sqlite3');
 const fs = require('fs-extra');
 
@@ -15,7 +14,6 @@ const fs = require('fs-extra');
     Adds newly generated version to library
 */
 module.exports = function(req, res) {
-
   const regex = /^[A-Za-z0-9]{1,5}$/;
 
   if (!regex.test(req.query.from) || !regex.test(req.query.to)) {
@@ -24,10 +22,12 @@ module.exports = function(req, res) {
   }
 
   const db = new sqlite.Database(req._path.lib + '/metadata.db');
-  let path = '', sql = '', vars = [];
+  let path = '',
+    sql = '',
+    vars = [];
 
   // Get book path from books table WHERE id
-  sql = 'SELECT path FROM "books" WHERE id = ?',
+  sql = 'SELECT path FROM "books" WHERE id = ?';
   vars = [+req.params.book];
 
   db.get(sql, vars, (err, row) => {
@@ -65,9 +65,7 @@ module.exports = function(req, res) {
             throw 'Could not convert format';
 
           // Add new format at nPath to book at req.params.book
-          return calibre.run(
-            'calibredb add_format', [+req.params.book, nPath]
-          );
+          return calibre.run('calibredb add_format', [+req.params.book, nPath]);
         })
         .then(result => {
           if (result.indexOf('Error') > -1)
@@ -82,5 +80,4 @@ module.exports = function(req, res) {
         });
     });
   });
-
 };
