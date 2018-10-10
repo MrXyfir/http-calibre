@@ -1,13 +1,16 @@
 {
-  "name": "xyfir-library",
-  "version": "4.5.2",
+  "name": "http-calibre",
+  "version": "4.5.3",
   "description": "",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Xyfir",
+  "author": "Xyfir, LLC <contact@xyfir.com> (https://www.xyfir.com)",
   "license": "UNLICENSED",
+  "prettier": {
+    "singleQuote": true
+  },
   "dependencies": {
     "app-module-path": "^2.2.0",
     "archiver": "^3.0.0",
@@ -17,10 +20,9 @@
     "extract-zip": "^1.6.6",
     "fs-extra": "^7.0.0",
     "get-folder-size": "^2.0.0",
-    "mailgun-js": "^0.20.0",
-    "multer": "^1.2.1",
+    "mailgun-js": "^0.21.0",
+    "multer": "^1.4.0",
     "node-calibre": "^1.2.0",
-    "sqlite3": "^4.0.2",
-    "superagent": "^3.8.2"
+    "sqlite3": "^4.0.2"
   }
 }
